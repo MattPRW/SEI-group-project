@@ -1,6 +1,6 @@
 //albums will be controlled here
 const Album = require('../models/Album')
-const axios = require 'axios'
+const axios = require('axios')
 
 function searchAlbums(req, res) {
   app.get('myproxyroute', (req, res) => {
