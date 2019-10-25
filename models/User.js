@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   image: { type: String, required: true },
   friends: { type: [String] },
   recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
-  address: { type: String, unique: true }
+  address: { type: String }
 }, {
   timestamps: true
 })
