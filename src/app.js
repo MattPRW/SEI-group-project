@@ -6,9 +6,13 @@ import './normalize.css'
 import './skeleton.css'
 
 
+<<<<<<< HEAD
 import AlbumSearch from './components/albums/AlbumSearch'
 
 const App = () => (
+=======
+Const App = () => (
+>>>>>>> development
   <BrowserRouter>
     <main>
       <Switch>

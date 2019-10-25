@@ -7,8 +7,13 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String, required: true },
   friends: { type: [String] },
-  collection: { type: mongoose.Schema.ObjectId, ref: 'Collection' },
+<<<<<<< HEAD
+  // recordBox: { type: mongoose.Schema.ObjectId, ref: 'Collection' },
   address: { type: String, required: true, unique: true }
+=======
+  recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
+  address: { type: String, unique: true }
+>>>>>>> development
 }, {
   timestamps: true
 })
