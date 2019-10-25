@@ -20,10 +20,11 @@ function login(req, res) {
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' }) 
       res.status(202).json({ message: `Welcome Back ${user.username}`, token })
     }) 
-    .catch(() => res.status(401).json({ message: 'Unauthorized' } ))
+    .catch(() => res.status(401).json({ message: 'Unauthorized2' } ))
 }
 
 function profile(req, res) { // route for a user profile
+
   User
     .findById(req.currentUser._id) 
     .then(user => res.status(200).json(user)) 
