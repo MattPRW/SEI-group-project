@@ -6,7 +6,7 @@ class AlbumSearch extends React.Component {
   constructor() {
     super()
     this.state = {
-      search: ''
+      data: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -17,20 +17,17 @@ class AlbumSearch extends React.Component {
     const search = { ...this.state.search, [e.target.name]: e.target.value }
     this.setState({ search })
   }
-  componentDidMount() {
-  }
 
   handleSubmit(e) {
     e.preventDefault()
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
     )
-      .then(res => this.setState({ albums: res.data }))
+      .then(res => this.setState({ data: res.data }))
       .catch(err => this.setState({ errors: err }))
   }
 
   render() {
-    // if (!this.state.data) return null
-    console.log(this.state)
+    if (!this.state.data) return null
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -42,12 +39,20 @@ class AlbumSearch extends React.Component {
           </div>
           <button className="button-primary" type="submit" value="Submit">Submit</button>
         </form>
-        <div className="cards">
-          {/* {this.state.albums.map(() => {
-          })} */}
+        <div className="album_cards">
+          {this.state.data.data &&
+            this.state.data.data.map(album => {
+              console.log('here')
+              return <div className="album_card" key={album.id}>
+                <h5>{album.title}</h5>
+                <h6>{album.artist.name}</h6>
+                <img src={album.cover_medium}></img>
+              </div>
+            }
+            )}
 
         </div>
-      </div>
+      </div >
     )
   }
 }

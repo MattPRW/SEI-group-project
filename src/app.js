@@ -4,9 +4,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 import './normalize.css'
 import './skeleton.css'
-
+import './style.scss'
 
 import AlbumSearch from './components/albums/AlbumSearch'
+
 
 const App = () => (
   <BrowserRouter>
