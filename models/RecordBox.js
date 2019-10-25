@@ -6,4 +6,4 @@ const recordBoxSchema = new mongoose.Schema({
   rating: { type: Number }
 })
 
-module.exports = mongoose.model('Create', recordBoxSchema)
+module.exports = mongoose.model('myCollection', recordBoxSchema)

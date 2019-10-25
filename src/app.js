@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 
 
-onst App = () => (
+Const App = () => (
   <BrowserRouter>
     <main>
       <Switch>
