@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String, required: true },
   friends: { type: [String] },
-  collection: { type: mongoose.Schema.ObjectId, ref: 'Collection' },
+  // recordBox: { type: mongoose.Schema.ObjectId, ref: 'Collection' },
   address: { type: String, required: true, unique: true }
 }, {
   timestamps: true

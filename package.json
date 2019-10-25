@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:back": "nodemon index.js",
-    "serve:front": "webpack-dev-server"
+    "serve:front": "webpack-dev-server",
+    "seed": "node db/seeds.js"
   },
   "repository": {
     "type": "git",
