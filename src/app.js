@@ -7,12 +7,16 @@ import './skeleton.css'
 import './style.scss'
 
 import AlbumSearch from './components/albums/AlbumSearch'
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
 
 
 const App = () => (
   <BrowserRouter>
     <main>
       <Switch>
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
         <Route path="/" component={AlbumSearch} />
       </Switch>
     </main>
