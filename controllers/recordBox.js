@@ -3,8 +3,8 @@ const Album = require('../models/Album')
 const User = require('../models/User')
 
 function index(req, res) {
-  User
-    .findById(req.currentUser._id)
+  // User
+  //   .findById(req.currentUser._id)
   RecordBox
     .then(records => res.status(201).json(records))
     .catch(err => res.json(err.message))
@@ -13,8 +13,13 @@ function index(req, res) {
 function addAlbum(req, res) {
   Album
     .findOne({ id: req.body.id })
+    .then(car => {
+      if (!car) return res.sendStatus(404).json({ message: 'Request Not Found' })
+      res.status(200).json(car)
+    })
+    .catch(err => res.json(err.message))
 
 }
 module.exports = {
-  index
+
 }

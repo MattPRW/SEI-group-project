@@ -29,43 +29,39 @@ class Login extends React.Component {
       })
       .catch(() => this.setState({ error: 'Incorrect Credentials' }))
   }
-
   render() {
     return (
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h2 className="title">Login</h2>
+          <form>
+            <h1>Register</h1>
             <div className="field">
-              <label className="label">Email</label>
+              <label className="label">Username*</label>
               <div className="control">
                 <input
-                  className={`input ${this.state.error} ? : 'is-danger' : '' `}
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
+                  className="input"
+                  name="username"
+                  placeholder="Username"
                 />
               </div>
             </div>
             <div className="field">
-              <label className="label">Password</label>
+              <label className="label">Password*</label>
               <div className="control">
                 <input
-                  className={`input ${this.state.error} ? : 'is-danger' : '' `}
-                  type="password"
-                  name="password"
+                  className="input"
+                  name="Password"
                   placeholder="Password"
-                  onChange={this.handleChange}
                 />
               </div>
-              {this.state.error && <small className="help is-danger">{this.state.error}</small>}
             </div>
-            <button type="submit" className="button is-warning is-fullwidth">Login</button>
+            <button type="submit">Login</button>
           </form>
         </div>
       </section>
     )
   }
 }
+
 
 export default Login
