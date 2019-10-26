@@ -11,9 +11,11 @@ function register(req, res) {
 
 // login route -/login
 function login(req, res) {
+  console.log(req.body)
   User
     .findOne({ email: req.body.email }) //find the user by that email
     .then(user => { 
+      console.log(user)
       if (!user || !user.validatePassword(req.body.password)) {
         return res.status(401).json({ message: 'Unauthorized' }) 
       }
