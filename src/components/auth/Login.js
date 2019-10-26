@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from '../../../controllers/auth'
+import Auth from '../../lib/auth'
 
 class Login extends React.Component {
   constructor() {
@@ -22,11 +22,10 @@ class Login extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-
-    axios.post('/api/login', this.state.data)
-      .then(res => {
+    axios.post('api/login', this.state.data)
+      .then(res => { 
         Auth.setToken(res.data.token)
-        this.props.history.push('/albums')
+        this.props.history.push('/search')
       })
       .catch(() => this.setState({ error: 'Incorrect Credentials' }))
   }

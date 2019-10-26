@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: String },
   friends: { type: [String] },
   recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
-  address: { type: String, unique: true }
+  address: { type: String }
 }, {
   timestamps: true
 })
