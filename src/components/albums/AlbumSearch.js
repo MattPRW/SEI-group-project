@@ -46,7 +46,7 @@ class AlbumSearch extends React.Component {
         <div className="container">
           <form onSubmit={this.handleSubmit}>
             <div className="row">
-              <div className="six columns">
+              <div className="twelve columns">
                 <label>Search for Artist or Album</label>
                 <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
               </div>

@@ -7,12 +7,14 @@ import './skeleton.css'
 import './style.scss'
 
 import AlbumSearch from './components/albums/AlbumSearch'
+import AlbumsIndex from './components/albums/AlbumsIndex'
 
 
 const App = () => (
   <BrowserRouter>
     <main>
       <Switch>
+        <Route path="/index" component={AlbumsIndex} />
         <Route path="/" component={AlbumSearch} />
       </Switch>
     </main>
