@@ -1,19 +1,12 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
 
-const Splashscreen = () => (
-  <section >
-    <div className="splash">
+const SplashScreen = ({ message }) => (
+  <section className="hero is-fullheight-with-navbar">
+    <div className="hero-body">
       <div className="container">
-        <p className="large-logo">
-          rekordr
-        </p>
-        <p>
-          <Link to="/login">login</Link> or <Link to="/register">signup</Link> to discover how your collection stacks up
-        </p>
+        <h1 className="title">{message}</h1>
       </div>
     </div>
   </section>
 )
-
-export default Splashscreen
+export default SplashScreen

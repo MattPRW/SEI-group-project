@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 
+import SplashScreen from '../common/SplashScreen'
+
 class Login extends React.Component {
   constructor() {
     super()
@@ -11,8 +13,12 @@ class Login extends React.Component {
         email: '',
         password: ''
       },
-      error: ''
+      error: '',
+      loading: false,
+      splashMessage: 'Welcome back!'
     }
+
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -20,16 +26,31 @@ class Login extends React.Component {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data, error: '' })
   }
+  toggleLoading() {
+    const loading = true
+    this.setState({ loading })
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     axios.post('api/login', this.state.data)
-      .then(res => { 
+      .then(res => {
         Auth.setToken(res.data.token)
-        this.props.history.push('/search')
+        this.setState({ splashMessage: res.data.message })
+        
+        this.toggleLoading()
+        // console.log(this.state.splashMessage)
+        setTimeout(() => this.props.history.push('/search'), 1000)
       })
       .catch(() => this.setState({ error: 'Incorrect Credentials' }))
   }
+
   render() {
+    if (this.state.loading) return (
+      <SplashScreen
+        message={this.state.splashMessage}
+      />
+    )
     return (
       <section className="section">
         <div className="container">

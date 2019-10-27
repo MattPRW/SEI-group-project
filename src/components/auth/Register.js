@@ -1,23 +1,38 @@
 import React from 'react'
 import axios from 'axios'
 
+import SplashScreen from '../common/SplashScreen'
+
+
+
 class Register extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      data: {}
+      data: {},
+      loading: false,
+      splashMessage: 'You\'re all set. taking you to login page.'
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
   }
+  toggleLoading() {
+    const loading = true
+    this.setState({ loading })
+  }
 
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/register', this.state.data)
-      .then(() => this.props.history.push('/login'))
+      // .then(() => this.props.history.push('/login'))
+      .then(res => this.setState({ splashMessage: res.data.message }))
+      .then(() => {
+        this.toggleLoading()
+        setTimeout(() => this.props.history.push('/login'), 1000)
+      })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
@@ -25,8 +40,13 @@ class Register extends React.Component {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data })
   }
-
+ 
   render() {
+    if (this.state.loading) return (
+      <SplashScreen
+        message={this.state.splashMessage}
+      />
+    )
     return (
       <section className="section">
         <div className="container">
