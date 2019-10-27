@@ -5,8 +5,9 @@ const { secret } = require('../config/environment')
 function register(req, res) {
   User
     .create(req.body)
-    .then(user => res.status(201).json({ message: `Thanks for registering ${user.username}. Now please login.` }))
+    .then(user => res.status(201).json({ message: `Thanks for registering, ${user.username}. Now please login.` }))
     .catch(err => res.status(422).json(err))
+ 
 }
 
 // login route -/login
@@ -19,7 +20,7 @@ function login(req, res) {
         return res.status(401).json({ message: 'Unauthorized' })
       }
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
-      res.status(202).json({ message: `Welcome back ${user.username}.`, token })
+      res.status(202).json({ message: `Welcome back, ${user.username}.`, token })
     })
     .catch(() => res.status(401).json({ message: 'Unauthorized2' }))
 }
@@ -30,7 +31,8 @@ function profile(req, res) { // route for a user /profile
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }
-function update(req, res) {
+
+function update(req, res) { // route to update user profile
   User
     .findById(req.currentUser._id)
     .then(user => {
@@ -40,7 +42,7 @@ function update(req, res) {
       return user.set(req.body)
     })
     .then(user => user.save())
-    .then(user => res.status(202).json({ message: 'Updated', user }))
+    .then(user => res.status(202).json({ message: 'Profile updated.', user }))
     .catch(err => res.json(err))
 }
 

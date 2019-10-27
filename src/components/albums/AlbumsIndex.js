@@ -19,8 +19,10 @@ class AlbumsIndex extends React.Component {
     // console.log(this.state)
     if (!this.state.albums) return null
     return (
-      <div className="section">
-        <h1>All albums added by users:</h1>
+      <section className="section">
+        <div className="container">
+          <h2>All albums added by users:</h2>
+        </div>
         <div className="container flex-container">
           {this.state.albums &&
             this.state.albums.map(album => (
@@ -29,7 +31,7 @@ class AlbumsIndex extends React.Component {
               />
             ))}
         </div>
-      </div>
+      </section>
     )
   }
 }

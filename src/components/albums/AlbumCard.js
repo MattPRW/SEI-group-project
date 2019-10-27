@@ -2,7 +2,7 @@ import React from 'react'
 
 const AlbumCard = ({ title, artist, cover_medium, id, handleAddAlbum }) => (
 
-  <div onClick={handleAddAlbum} className="one-third column" value={id} key={id} >
+  <div className="one-third column" value={id} key={id} >
     <div>
       <h5>{title}</h5>
       <h6>{`Artist: ${artist.name}`}</h6>

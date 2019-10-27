@@ -1,11 +1,11 @@
 import React from 'react'
-const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formTitle }) => (
+const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) => (
 
   <section className="section">
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <h1>{formTitle}</h1>
-        {profile.username &&
+        <h2>{formData.title}</h2>
+        {!formData.noUserNameField &&
           <div className="field">
             <label className="label">Username*</label>
             <div className="control">
@@ -18,7 +18,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formTitle })
               />
             </div>
           </div>}
-        {profile.email &&
+        {!formData.noEmailField &&
           <div className="field">
             <label className="label">Email*</label>
             <div className="control">
@@ -31,57 +31,57 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formTitle })
               />
             </div>
           </div>}
-        {profile.password &&
-        <div className="field">
-          <label className="label">Password*</label>
-          <div className="control">
-            <input
-              className="input"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-            />
-          </div>
-        </div>}
-        {profile.passwordConfirmation &&
-        <div className="field">
-          <label className="label">Password Confirmation*</label>
-          <div className="control">
-            <input
-              className="input"
-              name="passwordConfirmation"
-              placeholder="Password Confirmation"
-              onChange={handleChange}
-            />
-          </div>
-        </div>}
-        {profile.photo &&
-        <div className="field">
-          <label className="label">Upload Photo</label>
-          <div className="control">
-            <input
-              className="input"
-              name="photo"
-              placeholder="Photo"
-              value={profile.photo}
-              onChange={handleChange}
-            />
-          </div>
-        </div>}
-        {profile.address &&
-        <div className="field">
-          <label className="label">Address</label>
-          <div className="control">
-            <input
-              className="input"
-              name="address"
-              placeholder="Address"
-              value={profile.address}
-              onChange={handleChange}
-            />
-          </div>
-        </div>}
-        <button type="submit">{formTitle}</button>
+        {!formData.noPasswordField &&
+          <div className="field">
+            <label className="label">Password*</label>
+            <div className="control">
+              <input
+                className="input"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+              />
+            </div>
+          </div>}
+        {!formData.noPasswordConfirmationField &&
+          <div className="field">
+            <label className="label">Password Confirmation*</label>
+            <div className="control">
+              <input
+                className="input"
+                name="passwordConfirmation"
+                placeholder="Password Confirmation"
+                onChange={handleChange}
+              />
+            </div>
+          </div>}
+        {!formData.noImageField &&
+          <div className="field">
+            <label className="label">Upload Photo</label>
+            <div className="control">
+              <input
+                className="input"
+                name="image"
+                placeholder="Image"
+                value={profile.image}
+                onChange={handleChange}
+              />
+            </div>
+          </div>}
+        {!formData.noAddressField &&
+          <div className="field">
+            <label className="label">Address</label>
+            <div className="control">
+              <input
+                className="input"
+                name="address"
+                placeholder="Address"
+                value={profile.address}
+                onChange={handleChange}
+              />
+            </div>
+          </div>}
+        <button type="submit">{formData.title}</button>
       </form>
     </div>
   </section>

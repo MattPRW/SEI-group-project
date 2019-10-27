@@ -3,13 +3,19 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 
 import ProfileForm from './ProfileForm'
+import SplashScreen from '../common/SplashScreen'
 
 class Profile extends React.Component {
   constructor() {
     super()
     this.state = {
       data: null,
-      splashMessage: ''
+      loading: false,
+      formData: {
+        title: 'Update',
+        noPasswordConfirmationField: true,
+        noPasswordField: true
+      }
     },
     this.formTitle = 'Update'
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,10 +28,18 @@ class Profile extends React.Component {
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log('errors', err))
   }
+  toggleLoading() {
+    setTimeout(() => this.setState({ loading: false }), 1000)
+  }
   handleSubmit(e) {
     e.preventDefault()
-    axios.put('/api/profile', this.state.data)
-      .then(res => this.setState({ splashMessage: res.data.message, data: res.data }))
+    axios.put('/api/profile', this.state.data, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => this.setState({ splashMessage: res.data.message, data: res.data, loading: true }))
+      .then(() => {
+        this.toggleLoading()
+      })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
@@ -34,15 +48,19 @@ class Profile extends React.Component {
     this.setState({ data })
   }
   render() {
-    console.log('rendering', this.state.data)
+    if (this.state.loading) return (
+      <SplashScreen
+        message={this.state.splashMessage}
+      />
+    )
     if (!this.state.data) return null
     return (
       <>
         <ProfileForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          formTitle={this.formTitle}
           profile={this.state.data}
+          formData={this.state.formData}
         />
       </>
     )

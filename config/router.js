@@ -14,7 +14,7 @@ router.route('/profile')  //user profile controller
   .put(secureRoute, users.update)
 
 router.route('/albums') // creating one album in database when user clicks add to collection button. Actual adding to user collection is another route
-  .post(albums.create)
+  .post(secureRoute, albums.create)
   .get(albums.index)
 
 module.exports = router 
