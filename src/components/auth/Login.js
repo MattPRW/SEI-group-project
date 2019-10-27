@@ -3,6 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 
 import SplashScreen from '../common/SplashScreen'
+import ProfileForm from './ProfileForm'
 
 class Login extends React.Component {
   constructor() {
@@ -10,14 +11,14 @@ class Login extends React.Component {
 
     this.state = {
       data: {
-        email: '',
-        password: ''
+        email: ' ', //props and non-falsey value of ' ' is necessary so that these fields would show up on ProfileForm for login
+        password: ' '
       },
       error: '',
       loading: false,
       splashMessage: 'Welcome back!'
     }
-
+    this.formTitle = 'Login'
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,9 +38,8 @@ class Login extends React.Component {
       .then(res => {
         Auth.setToken(res.data.token)
         this.setState({ splashMessage: res.data.message })
-        
         this.toggleLoading()
-        // console.log(this.state.splashMessage)
+        console.log(this.state.splashMessage)
         setTimeout(() => this.props.history.push('/search'), 1000)
       })
       .catch(() => this.setState({ error: 'Incorrect Credentials' }))
@@ -52,36 +52,12 @@ class Login extends React.Component {
       />
     )
     return (
-      <section className="section">
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h1>Login</h1>
-            <div className="field">
-              <label className="label">Email*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="password"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      </section>
+      <ProfileForm
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        formTitle={this.formTitle}
+        profile={this.state.data}
+      />
     )
   }
 }

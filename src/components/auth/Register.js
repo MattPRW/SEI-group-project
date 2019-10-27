@@ -2,18 +2,26 @@ import React from 'react'
 import axios from 'axios'
 
 import SplashScreen from '../common/SplashScreen'
+import ProfileForm from './ProfileForm'
 
 
 
 class Register extends React.Component {
   constructor() {
     super()
-
     this.state = {
-      data: {},
+      data: {
+        username: ' ', //props and non-falsey value of ' ' is necessary so that these fields would show up on ProfileForm for login
+        email: ' ', 
+        password: ' ',
+        passwordConfirmation: ' ',
+        photo: ' ',
+        address: ' '
+      },
       loading: false,
       splashMessage: 'You\'re all set. taking you to login page.'
     }
+    this.formTitle = 'register'
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,7 +35,6 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/register', this.state.data)
-      // .then(() => this.props.history.push('/login'))
       .then(res => this.setState({ splashMessage: res.data.message }))
       .then(() => {
         this.toggleLoading()
@@ -40,7 +47,7 @@ class Register extends React.Component {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data })
   }
- 
+
   render() {
     if (this.state.loading) return (
       <SplashScreen
@@ -48,80 +55,12 @@ class Register extends React.Component {
       />
     )
     return (
-      <section className="section">
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h1>Register</h1>
-            <div className="field">
-              <label className="label">Username*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="username"
-                  placeholder="Username"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Email*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="password"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password Confirmation*</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="passwordConfirmation"
-                  placeholder="Password Confirmation"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Upload Photo</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="photo"
-                  placeholder="Photo"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Address</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="address"
-                  placeholder="Address"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <button type="submit">Register</button>
-          </form>
-        </div>
-      </section>
+      <ProfileForm
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        profile={this.state.data}
+        formTitle={this.formTitle}
+      />
     )
   }
 }

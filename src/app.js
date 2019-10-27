@@ -10,6 +10,7 @@ import './style.scss'
 import Navbar from './components/common/Navbar'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Profile from './components/auth/Profile'
 import Home from './components/common/Home'
 import AlbumSearch from './components/albums/AlbumSearch'
 import AlbumsIndex from './components/albums/AlbumsIndex'
@@ -20,11 +21,12 @@ const App = () => (
     <main>
       <Navbar />
       <Switch>
-        <Route path="/albumsIndex" component={AlbumsIndex} />
         <Route exact path="/" component={Home} />
         <Route path="/search" component={AlbumSearch} />
+        <Route path="/albumsIndex" component={AlbumsIndex} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
       </Switch>
     </main>
   </BrowserRouter>
