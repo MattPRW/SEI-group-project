@@ -1,17 +1,21 @@
 import React from 'react'
+import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/auth'
 
 class Navbar extends React.Component {
   constructor() {
     super()
-    this.state = { navOpen: false }
+    this.state = {
+      navOpen: false,
+      username: ''
+    }
     this.toggleNavbar = this.toggleNavbar.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
   }
 
   toggleNavbar() {
-    this.setState({ navOpen: !this.state.navOpen }) 
+    this.setState({ navOpen: !this.state.navOpen })
   }
 
   handleLogout() {
@@ -22,7 +26,16 @@ class Navbar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ navOpen: false })
-    } 
+    }
+  }
+
+  componentDidMount() {
+    axios.get('api/profile', {
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => {
+        this.setState({ username: res.data.username })
+      })
   }
 
   render() {
@@ -31,8 +44,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item logo" to="/">rekordr</Link>
-
-            <a 
+            <a
               className={`navbar-burger ${this.state.navOpen ? 'is-active' : ''}`}
               onClick={this.toggleNavbar}
             >
@@ -45,6 +57,7 @@ class Navbar extends React.Component {
             <div className="navbar-end">
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
+              {Auth.isAuthenticated() && <h4 className="navbar-item"> Logged in as {this.state.username} </h4>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/search">Search albums</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
             </div>

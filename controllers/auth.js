@@ -11,7 +11,6 @@ function register(req, res) {
 
 // login route -/login
 function login(req, res) {
-  console.log(req.body)
   User
     .findOne({ email: req.body.email }) //find the user by that email
     .then(user => { 
@@ -25,8 +24,7 @@ function login(req, res) {
     .catch(() => res.status(401).json({ message: 'Unauthorized2' } ))
 }
 
-function profile(req, res) { // route for a user profile
-
+function profile(req, res) { // route for a user /profile
   User
     .findById(req.currentUser._id) 
     .then(user => res.status(200).json(user)) 
