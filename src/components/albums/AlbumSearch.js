@@ -27,16 +27,13 @@ class AlbumSearch extends React.Component {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
     )
       .then(res => this.setState({ albums: res.data }))
-      .then(console.log(this.state.albums))
       .catch(err => this.setState({ errors: err }))
   }
 
   handleAddAlbum(e) {    // creates album in DB
     const albumId = parseInt(e.target.id) //need to parse button id as need to change data type from string to number for below filter to work
     let albumData = this.state.albums.data.filter(item => item.id === albumId)
-   
     albumData = albumData[0]
-    console.log('data', albumData)
     axios.post('/api/albums', albumData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -45,7 +42,7 @@ class AlbumSearch extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     if (!this.state.albums) return null
     return (
       <section className="section">
@@ -67,6 +64,7 @@ class AlbumSearch extends React.Component {
               < AlbumCard key={album.id}
                 {...album}
                 handleAddAlbum={this.handleAddAlbum}
+                coverImage={album.cover_medium}
               />
             ))}
         </div>

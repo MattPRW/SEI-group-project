@@ -6,13 +6,12 @@ const ratingSchema = new mongoose.Schema({
 })
 
 const albumSchema = new mongoose.Schema({
-  id: { type: Number, required: true, unique: true }, // unique id (used deezer id) prevents for the same album to be added to DB twice. DB still provides its own unique _id
+  deezerId: { type: Number, unique: true }, // unique id (used deezer id) prevents for the same album to be added to DB twice. DB still provides its own unique _id
   title: { type: String, required: true },
-  cover_medium: { type: String, required: true },
+  coverImage: { type: String, required: true },
   genre_id: { type: Number },
   artist: { type: Object },
-  users: { type: Array },
-  user: { type: String },
+  users: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   rating: [ratingSchema]
 }, {
   timestamps: true

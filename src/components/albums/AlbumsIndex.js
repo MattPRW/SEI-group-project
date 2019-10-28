@@ -16,7 +16,7 @@ class AlbumsIndex extends React.Component {
       .catch(err => console.log(err))
   }
   render() {
-    // console.log(this.state)
+    console.log(this.state)
     if (!this.state.albums) return null
     return (
       <section className="section">
@@ -26,7 +26,7 @@ class AlbumsIndex extends React.Component {
         <div className="container flex-container">
           {this.state.albums &&
             this.state.albums.map(album => (
-              < AlbumCard key={album.id}
+              < AlbumCard key={album.deezer_id}
                 {...album}
               />
             ))}
