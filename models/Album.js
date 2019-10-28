@@ -12,6 +12,7 @@ const albumSchema = new mongoose.Schema({
   genre_id: { type: Number },
   artist: { type: Object },
   users: { type: Array },
+  user: { type: String },
   rating: [ratingSchema]
 }, {
   timestamps: true

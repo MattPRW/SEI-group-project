@@ -1,5 +1,4 @@
 const Album = require('../models/Album')
-const axios = require('axios')
 
 //below function is thoughts draft of how to do deezer call from backend
 // function searchAlbums(req, res) {
@@ -12,9 +11,16 @@ const axios = require('axios')
 
 //create album
 function create(req, res) { // this function currently only adds album to DB with no user id on it. It needs ot work as follows: 1. add album if no existing album id found in DB, 2. add id of each user that clicked "add" to users array. Req body.user=req.currentUser is not yet working so commented out
+  req.body.user = req.currentUser
+  // req.body[0].users.push(req.currentUser)
   Album
-  // req.body.user = req.currentUser
     .create(req.body)
+    .then(album => {
+      // if (!album) return res.status(404).json({ message: 'Not Found' }) // return res 404 iuf not found
+      album.users.push(req.currentUser) // otherwise push the new comment into the body
+      return album.save() //  then resave the animal with the new comment
+    })
+    .then(console.log('album created'))
     .then(album => res.status(201).json(album))
     .catch(err => res.json(err.message))
 }
@@ -24,7 +30,6 @@ function addToRecordBox(req, res) {
   Album
     .findById(req.params.id)
     .populate('user')
-    .populate('comments.user')
     .then(album => {
       if (!album) return res.status(404).json({ message: 'Not Found' })
       album.users.push(req.body.user)

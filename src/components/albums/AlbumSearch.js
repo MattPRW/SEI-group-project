@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
 
 class AlbumSearch extends React.Component {
@@ -27,27 +27,34 @@ class AlbumSearch extends React.Component {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
     )
       .then(res => this.setState({ albums: res.data }))
+      .then(console.log(this.state.albums))
       .catch(err => this.setState({ errors: err }))
   }
 
   handleAddAlbum(e) {    // creates album in DB
-    const albumId = parseInt(e.target.id) //need to parse buttoon id as need to change data type from string to number for below filter to work
-    const albumData = this.state.albums.data.filter(item => item.id === albumId)
-    axios.post('/api/albums', albumData)
+    const albumId = parseInt(e.target.id) //need to parse button id as need to change data type from string to number for below filter to work
+    let albumData = this.state.albums.data.filter(item => item.id === albumId)
+   
+    albumData = albumData[0]
+    console.log('data', albumData)
+    axios.post('/api/albums', albumData, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }
 
   render() {
-    // console.log(this.state.albumData)
+    console.log(this.state)
     if (!this.state.albums) return null
     return (
-      <div>
+      <section className="section">
         <div className="container">
+          <h2>Search for Artist or Album</h2>
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="twelve columns">
-                <label>Search for Artist or Album</label>
+
                 <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
               </div>
             </div>
@@ -63,7 +70,7 @@ class AlbumSearch extends React.Component {
               />
             ))}
         </div>
-      </div>
+      </section>
     )
   }
 }

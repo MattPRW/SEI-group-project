@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   image: { type: String },
   friends: { type: [String] },
   recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
-  userAddress: { type: String }
+  address: { type: String }
 }, {
   timestamps: true
 })
@@ -18,7 +18,6 @@ userSchema.plugin(require('mongoose-unique-validator'))
 userSchema.set('toJSON', {
   transform(doc, json) {
     delete json.password
-    delete json.email
     return json
   }
 })

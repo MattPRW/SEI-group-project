@@ -9,11 +9,12 @@ router.route('/register') // just handling the register controller
 router.route('/login') // just handling user login controller
   .post(users.login) // we dont use a param.id to find the user, see the controller
 
-router.route('/profile')
+router.route('/profile')  //user profile controller
   .get(secureRoute, users.profile)
+  .put(secureRoute, users.update)
 
 router.route('/albums') // creating one album in database when user clicks add to collection button. Actual adding to user collection is another route
-  .post(albums.create)
+  .post(secureRoute, albums.create)
   .get(albums.index)
 
 module.exports = router 
