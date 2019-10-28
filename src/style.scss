@@ -32,3 +32,11 @@ flex-wrap: wrap;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.tiny-image {
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 100%
+}
