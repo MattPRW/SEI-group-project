@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import 'bulma'
 import './normalize.css'
 import './skeleton.css'
@@ -11,6 +11,7 @@ import Navbar from './components/common/Navbar'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Profile from './components/auth/Profile'
+import Dashboard from './components/auth/Dashboard'
 import Home from './components/common/Home'
 import AlbumSearch from './components/albums/AlbumSearch'
 import AlbumsIndex from './components/albums/AlbumsIndex'
@@ -27,6 +28,7 @@ const App = () => (
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
+        <Route path="/dashboard" component={Dashboard} />
       </Switch>
     </main>
   </BrowserRouter>

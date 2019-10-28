@@ -22,15 +22,17 @@ class Profile extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    axios.get('/api/profile', {
+    axios.get('api/profile', {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log('errors', err))
   }
+
   toggleLoading() {
     setTimeout(() => this.setState({ loading: false }), 1000)
   }
+
   handleSubmit(e) {
     e.preventDefault()
     axios.put('/api/profile', this.state.data, {
@@ -38,8 +40,9 @@ class Profile extends React.Component {
     })
       .then(res => this.setState({ splashMessage: res.data.message, data: res.data, loading: true }))
       .then(() => {
-        this.toggleLoading()
+        this.toggleLoading()  
       })
+      .then(() => this.props.history.push('/dashboard'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 

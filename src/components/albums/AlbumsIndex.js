@@ -11,7 +11,7 @@ class AlbumsIndex extends React.Component {
     }
   }
   componentDidMount() {
-    axios.get('/api/albums')
+    axios.get('api/albums')
       .then(res => this.setState({ albums: res.data }))
       .catch(err => console.log(err))
   }

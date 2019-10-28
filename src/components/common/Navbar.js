@@ -26,10 +26,11 @@ class Navbar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ navOpen: false })
+      this.getUserName()
     }
   }
 
-  componentDidMount() {
+  getUserName(){
     axios.get('api/profile', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
@@ -39,11 +40,13 @@ class Navbar extends React.Component {
   }
 
   render() {
+    // this.getUserName()
     return (
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item logo" to="/">rekordr</Link>
+            {!Auth.isAuthenticated() && <Link className="navbar-item logo" to="/">rekordr</Link>}
+            {Auth.isAuthenticated() && <Link className="navbar-item logo" to="/dashboard">rekordr</Link>}
             <a
               className={`navbar-burger ${this.state.navOpen ? 'is-active' : ''}`}
               onClick={this.toggleNavbar}
@@ -59,9 +62,8 @@ class Navbar extends React.Component {
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/search">Search albums</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/albumsIndex">Browse Albums</Link>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-              {Auth.isAuthenticated() && <h4 className="navbar-item"> Logged in as {this.state.username} </h4>}
+              {Auth.isAuthenticated() && <h6 className="navbar-item logged-in"> Logged in as {this.state.username} </h6>}
             </div>
           </div>
         </div>
