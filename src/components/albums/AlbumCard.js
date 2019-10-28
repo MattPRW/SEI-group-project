@@ -2,9 +2,9 @@ import React from 'react'
 
 const AlbumCard = ({ title, artist, cover_medium, id, handleAddAlbum }) => (
 
-  <div className="one-third column" value={id} key={id} >
+  <div className="column-is-one-third" value={id} key={id} >
     <div>
-      <h5>{title}</h5>
+      <h5 className="titleSize">{title}</h5>
       <h6>{`Artist: ${artist.name}`}</h6>
     </div>
     <div className="image">
