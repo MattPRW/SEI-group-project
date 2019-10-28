@@ -36,7 +36,7 @@ class Login extends React.Component {
       .then(res => {
         Auth.setToken(res.data.token)
         this.setState({ splashMessage: res.data.message, loading: true })
-        setTimeout(() => this.props.history.push('/search'), 1000)
+        setTimeout(() => this.props.history.push('/dashboard'), 1000)
       })
       .catch(() => this.setState({ error: 'Incorrect Credentials' }))
   }

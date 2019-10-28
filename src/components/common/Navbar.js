@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     super()
     this.state = {
       navOpen: false,
-      username: ''
+      user: {}
     }
     this.toggleNavbar = this.toggleNavbar.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -26,24 +26,27 @@ class Navbar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ navOpen: false })
+      this.getUser()
     }
   }
 
-  componentDidMount() {
+  getUser(){
     axios.get('api/profile', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
       .then(res => {
-        this.setState({ username: res.data.username })
+        this.setState({ user: res.data })
       })
   }
 
   render() {
+    // this.getUserName()
     return (
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item logo" to="/">rekordr</Link>
+            {!Auth.isAuthenticated() && <Link className="navbar-item logo" to="/">rekordr</Link>}
+            {Auth.isAuthenticated() && <Link className="navbar-item logo" to="/dashboard">rekordr</Link>}
             <a
               className={`navbar-burger ${this.state.navOpen ? 'is-active' : ''}`}
               onClick={this.toggleNavbar}
@@ -58,10 +61,10 @@ class Navbar extends React.Component {
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/search">Search albums</Link>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/albumsIndex">Browse Albums</Link>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
+              {Auth.isAuthenticated() && <Link className="navbar-item" to="/user-index">View users</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-              {Auth.isAuthenticated() && <h4 className="navbar-item"> Logged in as {this.state.username} </h4>}
+              {Auth.isAuthenticated() && <p className="navbar-item logged-in"> Logged in as {this.state.user.username} </p>}
+              {Auth.isAuthenticated() && <img src={this.state.user.image} className="navbar-item logged-in tiny-image"></img>}
             </div>
           </div>
         </div>
