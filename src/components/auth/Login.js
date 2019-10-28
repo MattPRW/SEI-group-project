@@ -17,7 +17,8 @@ class Login extends React.Component {
         title: 'Login',
         noUserNameField: true,
         noImageField: true,
-        noAddressField: true
+        noAddressField: true,
+        noPasswordConfirmationField: true
       }
     }
 

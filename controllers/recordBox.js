@@ -1,6 +1,5 @@
 const RecordBox = require('../models/RecordBox')
 const Album = require('../models/Album')
-const User = require('../models/User')
 
 function index(req, res) {
   // User
