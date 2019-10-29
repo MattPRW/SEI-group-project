@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 const Home = () => (
   <section >
     <div className="splash">
-      <div className="container">
+      <div className="container-title">
         <p className="large-logo">
           rekordr
         </p>
-        <p>
-          <Link to="/login">login</Link> or <Link to="/register">signup</Link> to discover how your collection stacks up
+        <p className="home-text">
+          <Link to="/login">log in</Link> or <Link to="/register">sign up</Link> to discover how your collection stacks up
         </p>
       </div>
     </div>

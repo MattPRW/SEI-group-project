@@ -30,7 +30,11 @@ class Navbar extends React.Component {
     }
   }
 
-  getUser(){
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser() {
     axios.get('api/profile', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
@@ -63,9 +67,11 @@ class Navbar extends React.Component {
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/search">Search albums</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/user-index">View users</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-              {Auth.isAuthenticated() && <p className="navbar-item logged-in"> Logged in as {this.state.user.username} </p>}
-              {Auth.isAuthenticated() && <img src={this.state.user.image} className="navbar-item logged-in tiny-image"></img>}
             </div>
+          </div>
+          <div className="navbar-end logged-in">
+            <div className="profile-element">{Auth.isAuthenticated() && <p className="navbar-item login-msg"> Logged in as {this.state.user.username} </p>}</div>
+            <div className="profile-element navbar-item">{Auth.isAuthenticated() && <Link to="/dashboard"><img src={this.state.user.image} className="tiny-image"></img></Link>}</div>
           </div>
         </div>
       </nav>
