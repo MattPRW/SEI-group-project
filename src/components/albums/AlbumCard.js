@@ -4,7 +4,7 @@ const AlbumCard = ({ title, artist, coverImage, id, handleAddAlbum }) => (
 
   <div className="column-is-one-third" value={id} key={id} >
     <div>
-      <h5 className="titleSize">{title}</h5>
+      <h5 className="title-size">{title}</h5>
       <h6>{`Artist: ${artist.name}`}</h6>
     </div>
     <div className="image">
