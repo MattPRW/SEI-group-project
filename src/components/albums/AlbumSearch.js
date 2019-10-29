@@ -41,6 +41,10 @@ class AlbumSearch extends React.Component {
       .catch(err => console.log(err))
   }
 
+  inCollection(value) {
+    return value.includes(Auth.getPayload().sub)
+  }
+
   render() {
     // console.log(this.state)
     if (!this.state.albums) return null
