@@ -6,6 +6,9 @@
 
 body {
   font-family: 'Raleway', sans-serif;
+  // height: 100vh;
+  height: 100%;
+  background-color: #dddccf;
 }
 
 button, submit {
@@ -30,16 +33,13 @@ justify-content: space-evenly;
 }
 
 .title-size {
-  max-width: 200px;
-  white-space: nowrap;
+  max-width: 220px;
+  font-size: 1.7rem;
+  font-weight: 500;
+  white-space: wrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
-// .image {
-//   width: 30vh;
-//   height: 30vh;
-// }
 
 
 .logo {
@@ -72,7 +72,7 @@ h3{
   color: #131313;
   letter-spacing: .25em;
   text-shadow: 
-      4px 4px 0px #d5d5d5, 
+      3px 3px 0px #eeeeee, 
       3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -112,8 +112,8 @@ h3{
 
 .profile-pic{
   display: flex;
-  max-height: 50vh;
-  max-width: 50vh;
+  max-height: 30vh;
+  max-width: 30vh;
   box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.959);
 }
 
@@ -158,32 +158,22 @@ h3{
   max-height: 25vh;
 }
 
-
-
-
-
-.nav {
+.album-card {
   display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  background-color: whitesmoke;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.959);
 }
 
-// below is for demonstration purpose
-$height: 50px;
-$minWidth: 200px;
-
-.left, .middle, .right {
-  height: $height;
-  min-width: $minWidth;
+.button-container{
+  display: flex;
+  align-self: center;
+  justify-self: flex-end;
 }
 
-.left {
-  background: #ffcdd2;
+.add-button{
+  align-self: center;
+  justify-self: flex-end;
 }
-
-.middle {
-  background: #bbdefb;
-}
-
-.right {
-  background: #fff9c4;
-}
-
