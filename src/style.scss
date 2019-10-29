@@ -1,3 +1,19 @@
+*{
+  margin:0;
+  padding:0;
+  border:0;
+  }
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+button, submit {
+  font-size: 1.2rem;
+  letter-spacing: .15em;
+
+}
+
 .flex-container {
 display: flex;
 flex-wrap: wrap;
@@ -9,6 +25,8 @@ justify-content: space-evenly;
   flex-direction: column;
   width: 20vw;
   max-height: auto;
+  box-shadow: 
+  2px 2px 0px #000000;
 }
 
 .titleSize {
@@ -17,10 +35,10 @@ justify-content: space-evenly;
   overflow: hidden;
 }
 
-.image {
-  width: 30vh;
-  height: 30vh;
-}
+// .image {
+//   width: 30vh;
+//   height: 30vh;
+// }
 
 
 .logo {
@@ -45,6 +63,20 @@ justify-content: space-evenly;
       7px 7px 0px rgba(0, 0, 0, 0.2);
 }
 
+h3{
+  font-family: 'Staatliches', sans-serif;
+  font-size: 4rem;
+  // margin-top: 13.5%;
+  margin-left: 2.5%;
+  color: #131313;
+  letter-spacing: .25em;
+  text-shadow: 
+      4px 4px 0px #d5d5d5, 
+      3px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+
 .home-text {
   font-family: 'Staatliches', sans-serif;
   letter-spacing: .2em;
@@ -56,6 +88,10 @@ justify-content: space-evenly;
 
 .navbar {
   height: 4vh;
+  width:100%;
+  margin:0;
+  padding:0;
+  border:0;
 }
 
 .navbar, .navbar-menu {
@@ -65,6 +101,7 @@ justify-content: space-evenly;
 .logged-in {
   display: flex;
   flex-direction: row;
+  align-content: flex-end;
 }
 
 .profile-element{
@@ -79,20 +116,66 @@ justify-content: space-evenly;
 }
 
 .login-msg{
-  align-items: center;
+  margin-top: 25.2px;
+  color: black;
+  font-weight: 500;
 }
 
 .splash {
   height: 96vh;
+  width:100vw;
   background-image: url('https://images.unsplash.com/photo-1461360228754-6e81c478b882?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.tiny-image {
-  min-width: 40px;
-  min-height: 40px;
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 100%
+.tiny-image-container {
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
+
+.tiny-image {
+  min-width: 3vh;
+  min-height: 3vh;
+  max-width: 3vh;
+  max-height: 3vh;
+  border-radius: 100%;
+}
+
+.user-image {
+  min-width: auto;
+  min-height: 25vh;
+  max-width: auto;
+  max-height: 25vh;
+}
+
+
+
+
+
+.nav {
+  display: flex;
+}
+
+// below is for demonstration purpose
+$height: 50px;
+$minWidth: 200px;
+
+.left, .middle, .right {
+  height: $height;
+  min-width: $minWidth;
+}
+
+.left {
+  background: #ffcdd2;
+}
+
+.middle {
+  background: #bbdefb;
+}
+
+.right {
+  background: #fff9c4;
+}
+

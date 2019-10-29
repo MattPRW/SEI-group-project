@@ -71,7 +71,7 @@ class Navbar extends React.Component {
           </div>
           <div className="navbar-end logged-in">
             <div className="profile-element">{Auth.isAuthenticated() && <p className="navbar-item login-msg"> Logged in as {this.state.user.username} </p>}</div>
-            <div className="profile-element navbar-item">{Auth.isAuthenticated() && <Link to="/dashboard"><img src={this.state.user.image} className="tiny-image"></img></Link>}</div>
+            <div className="profile-element navbar-item">{Auth.isAuthenticated() && <Link to="/dashboard" className="tiny-image-container"><img src={this.state.user.image} className="tiny-image"></img></Link>}</div>
           </div>
         </div>
       </nav>
