@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
             <h3>
               {`${this.state.user.username}'s`} Record Box
             </h3>
-            <img className="user-image" src={this.state.user.image}></img>
+            <img className="profile-pic" src={this.state.user.image}></img>
             <button>
               <Link to="/Profile">Edit Profile Details</Link>
             </button>

@@ -29,9 +29,10 @@ justify-content: space-evenly;
   2px 2px 0px #000000;
 }
 
-.titleSize {
+.title-size {
   max-width: 200px;
   white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 
@@ -107,6 +108,13 @@ h3{
 .profile-element{
   display: flex;
   align-items: center;
+}
+
+.profile-pic{
+  display: flex;
+  max-height: 50vh;
+  max-width: 50vh;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.959);
 }
 
 .container-title{
