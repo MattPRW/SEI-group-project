@@ -1,6 +1,8 @@
 .flex-container {
 display: flex;
 flex-wrap: wrap;
+justify-content: space-evenly;
+
 }
 .album_card {
   display: flex;
@@ -8,27 +10,89 @@ flex-wrap: wrap;
   width: 20vw;
   max-height: auto;
 }
-.image {
-  width: 100%;
+
+.titleSize {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
+.image {
+  width: 30vh;
+  height: 30vh;
+}
+
 
 .logo {
   font-family: 'Staatliches', cursive;
   font-size: 30px;
+  color: #131313;
+  letter-spacing: .1em;
+  text-shadow: 
+      2px 2px 0px #adacac, 
+      2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .large-logo {
-  font-family: 'Staatliches', cursive;
+  font-family: 'Staatliches', sans-serif;
   font-size: 15rem;
+  margin-top: 13.5%;
+  margin-left: 2.5%;
+  color: #131313;
+  letter-spacing: .25em;
+  text-shadow: 
+      4px 4px 0px #d5d5d5, 
+      7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+.home-text {
+  font-family: 'Staatliches', sans-serif;
+  letter-spacing: .2em;
+  padding: 5px 60px;
+  background-color: lightgrey;
+  box-shadow: 
+  2px 2px 0px #000000;
 }
 
 .navbar {
-  background-color: grey
+  height: 4vh;
+}
+
+.navbar, .navbar-menu {
+  background-color: rgb(157, 158, 141)
+}
+
+.logged-in {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-element{
+  display: flex;
+  align-items: center;
+}
+
+.container-title{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-msg{
+  align-items: center;
 }
 
 .splash {
-  height: 94vh;
+  height: 96vh;
   background-image: url('https://images.unsplash.com/photo-1461360228754-6e81c478b882?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.tiny-image {
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 100%
 }

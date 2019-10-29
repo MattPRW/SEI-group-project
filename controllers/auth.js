@@ -33,6 +33,14 @@ function profile(req, res) { // route for a user /profile
     .catch(err => res.json(err))
 }
 
+//route to find all users
+function index(req, res) {
+  User
+    .find() 
+    .then(users => res.status(200).json(users))
+    .catch(() => res.status(404).json({ message: 'Not Found' }))
+}
+
 function update(req, res) { // route to update user profile
   User
     .findById(req.currentUser._id)
@@ -51,5 +59,6 @@ module.exports = {
   update,
   profile,
   register,
-  login // exporting each 'route handling' function, taking advantage of es6 object short hand, same as saying { login: login }
+  login, // exporting each 'route handling' function, taking advantage of es6 object short hand, same as saying { login: login },
+  index
 }

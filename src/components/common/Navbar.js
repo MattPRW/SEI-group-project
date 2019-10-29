@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     super()
     this.state = {
       navOpen: false,
-      username: ''
+      user: {}
     }
     this.toggleNavbar = this.toggleNavbar.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -26,16 +26,20 @@ class Navbar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ navOpen: false })
-      this.getUserName()
+      this.getUser()
     }
   }
 
-  getUserName(){
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser() {
     axios.get('api/profile', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
       .then(res => {
-        this.setState({ username: res.data.username })
+        this.setState({ user: res.data })
       })
   }
 
@@ -61,10 +65,13 @@ class Navbar extends React.Component {
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/search">Search albums</Link>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/albumsIndex">Browse Albums</Link>}
+              {Auth.isAuthenticated() && <Link className="navbar-item" to="/user-index">View users</Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-              {Auth.isAuthenticated() && <h6 className="navbar-item logged-in"> Logged in as {this.state.username} </h6>}
             </div>
+          </div>
+          <div className="navbar-end logged-in">
+            <div className="profile-element">{Auth.isAuthenticated() && <p className="navbar-item login-msg"> Logged in as {this.state.user.username} </p>}</div>
+            <div className="profile-element navbar-item">{Auth.isAuthenticated() && <Link to="/dashboard"><img src={this.state.user.image} className="tiny-image"></img></Link>}</div>
           </div>
         </div>
       </nav>

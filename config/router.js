@@ -17,8 +17,10 @@ router.route('/albums') // creating one album in database when user clicks add t
   .post(secureRoute, albums.create)
   .get(albums.index)
 
+router.route('/users') 
+  .get(secureRoute, users.index)
+
 // router.route('/albums/:id')
 //   .put(secureRoute, albums.addUserToAlbum)
-
 
 module.exports = router 
