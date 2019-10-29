@@ -50,8 +50,8 @@ class AlbumSearch extends React.Component {
     if (!this.state.albums) return null
     return (
       <section className="section">
-        <div className="container">
-          <h2>Search for Artist or Album</h2>
+        <div className="container ">
+          <h3>Search for Artist or Album</h3>
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="twelve columns">
