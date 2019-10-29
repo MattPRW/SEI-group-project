@@ -9,45 +9,49 @@ const Album = require('../models/Album')
 //   })
 // }
 
-
-function create(req, res) { // this function currently only adds album to DB with no user id on it. It needs ot work as follows: 1. add album if no existing album id found in DB, 2. add id of each user that clicked "add" to users array. Req body.user=req.currentUser is not yet working so commented out
+function create(req, res) { // grabs album from Deezer DB if only it does not exist in local DB. Once created it adds the user to users array.
   req.body.deezerId = req.body.id //rewrites deezer object data to our model format
   req.body.coverImage = req.body.cover_medium //rewrites deezer object data to our model format
   Album
     .findOne({ deezerId: req.body.id })
     .then(album => {
-      if (!album) {
-        return Album.create(req.body)
-      } else {
-        return album
-      }
+      if (!album) return Album.create(req.body)
+      return album
     })
     .then(album => {
-      // if album.users includes req.currentUser._id then just return the album
-      if (album.users.includes(req.currentUser._id)) {
-        console.log('includes', album.users)
-        return album.save()
-      } else {
-        album.users.push(req.currentUser)
-        console.log('!includes', album.users)
-        return album.save()
-      }
-    })
+      if (album.users.includes(req.currentUser._id)) return album.save()
+      album.users.push(req.currentUser)
+      // console.log('!includes', album.users)
+      return album.save()
+    }
+    )
     .then(album => res.status(201).json(album))
     .catch(err => res.json(err.message))
 }
 
-function addToRecordBox(req, res) {
-  // req.body.user = req.currentUser
+function remove(req, res) { // removes user from users array and users rekordbox rather than album fro DB
+  req.body.deezerId = req.params.id //rewrites deezer object data to our model format
+  console.log(req.currentUser._id)
   Album
     .findById(req.params.id)
     .populate('users')
+    // .then(album => res.status(200).json(album))
     .then(album => {
       if (!album) return res.status(404).json({ message: 'Not Found' })
-      album.users.push(req.body.user)
+      const users = album.users.filter(user => user.username !== req.currentUser.username) // removes user from album by unique username
+      album.users = users
       return album.save()
     })
     .then(album => res.status(202).json(album))
+    .catch(err => res.json(err.message))
+}
+
+function show(req, res) { // removes user from users array and users rekordbox rather than album fro DB
+  req.body.deezerId = req.params.id //rewrites deezer object data to our model format
+  Album
+    .findById(req.params.id)
+    .populate('users')
+    .then(albums => res.status(200).json(albums))
     .catch(err => res.json(err.message))
 }
 
@@ -60,9 +64,9 @@ function index(req, res) {
     .catch(err => res.json(err.message))
 }
 
-
-
 module.exports = {
   create,
-  index
+  index,
+  show,
+  remove
 }

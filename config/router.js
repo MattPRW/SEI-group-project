@@ -17,6 +17,10 @@ router.route('/albums') // creating one album in database when user clicks add t
   .post(secureRoute, albums.create)
   .get(albums.index)
 
+router.route('/albums/:id')
+  .get(albums.show)
+  .delete(secureRoute, albums.remove)
+
 router.route('/users') 
   .get(secureRoute, users.index)
 

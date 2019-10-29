@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  image: { type: String },
+  image: {
+    type: String, default: 'https://i.pinimg.com/originals/d6/88/10/d688106b46b6b0454046981212f993dd.jpg' },
   friends: { type: [String] },
   // recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
   address: { type: String }
