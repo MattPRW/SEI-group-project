@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import AlbumCard from '../albums/AlbumCard'
+import UserCard from '../auth/UserCard'
 
 class Dashboard extends React.Component {
   constructor() {
@@ -40,21 +41,14 @@ class Dashboard extends React.Component {
   render() {
 
     if (!this.state.user) return null
-    console.log(this.state.user.rekordBox.length)
+    console.log(this.state.user)
     return (
       <section >
         <div>
           <div className="container">
-            <h3>
-              {`${this.state.user.username}'s`} Record Box
-            </h3>
-            <img className="profile-pic" src={this.state.user.image}></img>
-            <button>
-              <Link to="/Profile">Edit Profile Details</Link>
-            </button>
-          </div>
-          <div className="container">
-            <h2>{`You have ${this.state.user.rekordBox.length} albums in your record box.`}</h2>
+            < UserCard
+              { ...this.state.user }
+            />
           </div>
           <div className="container flex-container">
             {this.state.user.rekordBox.map(album => (

@@ -68,7 +68,7 @@ h3{
   font-family: 'Staatliches', sans-serif;
   font-size: 4rem;
   // margin-top: 13.5%;
-  margin-left: 2.5%;
+  // margin-left: 2.5%;
   color: #131313;
   letter-spacing: .25em;
   text-shadow: 
@@ -176,4 +176,23 @@ h3{
 .add-button{
   align-self: center;
   justify-self: flex-end;
+}
+
+.user-card{
+  display:flex;
+  flex-direction: row;
+  margin: 4%;
+}
+
+.user-info{
+  display:flex;
+  flex-direction: column;
+  // justify-items: center;
+  margin-left: 50px;
+  width: 80%;
+}
+
+.edit-profile{ 
+  justify-self: flex-end;
+  align-self: baseline;
 }

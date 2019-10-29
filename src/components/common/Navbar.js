@@ -8,7 +8,8 @@ class Navbar extends React.Component {
     super()
     this.state = {
       navOpen: false,
-      user: {}
+      user: {},
+      logout: false
     }
     this.toggleNavbar = this.toggleNavbar.bind(this)
     this.handleLogout = this.handleLogout.bind(this)

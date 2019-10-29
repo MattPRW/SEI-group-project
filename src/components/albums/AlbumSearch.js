@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
+import { Link } from 'react-router-dom'
 
 class AlbumSearch extends React.Component {
   constructor() {
@@ -55,11 +56,11 @@ class AlbumSearch extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="twelve columns">
-
                 <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
               </div>
             </div>
             <button className="button-primary" type="submit" value="Submit">Submit</button>
+            <Link to="/Dashboard" className="button" type="submit" value="Submit">Return to Profile</Link>
           </form>
         </div>
         <div className="container flex-container">
