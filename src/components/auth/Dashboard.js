@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
   render() {
 
     if (!this.state.user) return null
-    console.log(this.state.user.rekordBox.length)
+    console.log(this.state)
     return (
       <section >
         <div>

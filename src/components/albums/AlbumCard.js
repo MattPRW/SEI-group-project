@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AlbumCard = ({ title, artist, coverImage, id, handleAddAlbum }) => (
+const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRekordBox }) => (
 
   <div className="column-is-one-third" value={id} key={id} >
     <div>
@@ -10,9 +10,9 @@ const AlbumCard = ({ title, artist, coverImage, id, handleAddAlbum }) => (
     <div className="image">
       <img src={coverImage}></img>
     </div>
-    {handleAddAlbum && (<div onClick={handleAddAlbum} className="button" id={id}>
-     Add to collection
-    </div>)}
+    {addAlbum && removeAlbum && (
+      <div onClick={(inRekordBox === false) ? addAlbum : removeAlbum} className={`button ${(inRekordBox === false) ? 'button-primary' : 'button'}`} id={id}>
+        {(inRekordBox === false) ? 'Add to collection' : 'Remove from collection'}</div>)}
   </div >
 )
 

@@ -8,6 +8,7 @@ class AlbumSearch extends React.Component {
     super()
     this.state = {
       albums: [],
+      rekordBox: null,
       albumData: null
 
     }
@@ -15,8 +16,17 @@ class AlbumSearch extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAddAlbum = this.handleAddAlbum.bind(this)
+    this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
 
   }
+  getRekordBox() {
+    axios.get('api/profile', {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => this.setState({ rekordBox: res.data.rekordBox }))
+      .catch(err => console.log('errors', err))
+  }
+
   handleChange(e) {
     const search = { ...this.state.search, [e.target.name]: e.target.value }
     this.setState({ search })
@@ -26,7 +36,7 @@ class AlbumSearch extends React.Component {
     e.preventDefault()
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
     )
-      .then(res => this.setState({ albums: res.data }))
+      .then(res => this.setState({ albums: res.data }, this.getRekordBox()))
       .catch(err => this.setState({ errors: err }))
   }
 
@@ -37,17 +47,30 @@ class AlbumSearch extends React.Component {
     axios.post('/api/albums', albumData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(res => console.log(res))
+      .then(() => this.getRekordBox())
+      .catch(err => console.log(err))
+  }
+  handleRemoveAlbum(e) {    // creates album in DB
+    const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+    let albumData = this.state.rekordBox.filter(item => item.deezerId === albumId)
+    albumData = albumData[0]._id
+    axios.delete(`/api/albums/${albumData}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => this.getRekordBox())
       .catch(err => console.log(err))
   }
 
-  inCollection(value) {
-    return value.includes(Auth.getPayload().sub)
+
+  inRekordBox(value) {
+    if (this.state.rekordBox) return this.state.rekordBox.some(record => record.deezerId === value)
+
   }
 
   render() {
-    // console.log(this.state)
-    if (!this.state.albums) return null
+
+    if (!this.state.albums && !this.state.rekordBox) return null
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container ">
@@ -55,7 +78,6 @@ class AlbumSearch extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="twelve columns">
-
                 <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
               </div>
             </div>
@@ -67,7 +89,9 @@ class AlbumSearch extends React.Component {
             this.state.albums.data.map(album => (
               < AlbumCard key={album.id}
                 {...album}
-                handleAddAlbum={this.handleAddAlbum}
+                inRekordBox={this.inRekordBox(album.id)}
+                addAlbum={this.handleAddAlbum}
+                removeAlbum={this.handleRemoveAlbum}
                 coverImage={album.cover_medium}
               />
             ))}
