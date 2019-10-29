@@ -5,6 +5,7 @@ import 'bulma'
 import './normalize.css'
 import './skeleton.css'
 import './style.scss'
+import Auth from './lib/auth'
 
 import Navbar from './components/common/Navbar'
 import Register from './components/auth/Register'

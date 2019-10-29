@@ -15,6 +15,7 @@ class AlbumsIndex extends React.Component {
       .then(res => this.setState({ albums: res.data }))
       .catch(err => console.log(err))
   }
+
   render() {
     console.log(this.state)
     if (!this.state.albums) return null
