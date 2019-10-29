@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String },
   friends: { type: [String] },
-  recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
+  // recordBox: { type: mongoose.Schema.ObjectId, ref: 'RecordBox' },
   address: { type: String }
 }, {
   timestamps: true
@@ -15,7 +15,14 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(require('mongoose-unique-validator'))
 
+userSchema.virtual('rekordBox', {
+  ref: 'Album',
+  localField: '_id',
+  foreignField: 'users'
+})
+
 userSchema.set('toJSON', {
+  virtuals: true,
   transform(doc, json) {
     delete json.password
     return json
@@ -37,15 +44,15 @@ userSchema
   })
 
 userSchema
-  .pre('save',  function hashPassword(next) { 
-    if (this.isModified('password')) { 
-      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8)) 
+  .pre('save', function hashPassword(next) {
+    if (this.isModified('password')) {
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8))
     }
-    next() 
+    next()
   })
 
-userSchema.methods.validatePassword = function validatePassword(password) { 
+userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
-} 
+}
 
 module.exports = mongoose.model('User', userSchema)

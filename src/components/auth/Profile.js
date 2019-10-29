@@ -51,6 +51,7 @@ class Profile extends React.Component {
     this.setState({ data })
   }
   render() {
+    console.log(this.state)
     if (this.state.loading) return (
       <SplashScreen
         message={this.state.splashMessage}

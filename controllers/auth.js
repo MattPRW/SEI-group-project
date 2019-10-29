@@ -28,6 +28,7 @@ function login(req, res) {
 function profile(req, res) { // route for a user /profile
   User
     .findById(req.currentUser._id)
+    .populate('rekordBox')
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }
