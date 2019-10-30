@@ -54,15 +54,15 @@ class Dashboard extends React.Component {
       .catch(err => console.log(err))
   }
 
-  handleRemoveAlbum(e) {    // 
-    const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
-    const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
-    axios.delete(`/api/profile/albums/${albumData._id}`, {
-      headers: { Authorization: `Bearer ${Auth.getToken()}` }
-    })
-      .then(() => this.getUser())
-      .catch(err => console.log(err))
-  }
+  // handleRemoveAlbum(e) {
+  //   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+  //   const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
+  //   axios.delete(`/api/profile/albums/${albumData._id}`, {
+  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  //   })
+  //     .then(() => this.getUser())
+  //     .catch(err => console.log(err))
+  // }
 
   render() {
 
@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
         <div>
           <div className="container">
             < ProfileCard
-              { ...this.state.user }
+              {...this.state.user}
             />
           </div>
           <div className="container flex-container">
