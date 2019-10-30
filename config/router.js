@@ -16,6 +16,9 @@ router.route('/profile')  //user profile controller
 router.route('/profile/albums')
   .get(secureRoute, users.displayRekordBox)
 
+router.route('/profile/albums/:id')
+  .delete(secureRoute, albums.remove)
+
 router.route('/albums') // creating one album in database when user clicks add to collection button. Actual adding to user collection is another route
   .post(secureRoute, albums.create)
   .get(albums.index)
@@ -26,6 +29,9 @@ router.route('/albums/:id')
 
 router.route('/users')
   .get(secureRoute, users.index)
+
+router.route('/users/:id')
+  .get(secureRoute, users.displayOtherUser)
 
 // router.route('/albums/:id')
 //   .put(secureRoute, albums.addUserToAlbum)

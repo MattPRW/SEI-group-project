@@ -13,7 +13,7 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
     <div>
       <h5 className="title-size">{title}</h5>
       <h6>{`${artist.name}`}</h6>
-    </div >
+    </div>
     <button className="button" value={id} onClick={dropDown}>
       ▷
     </button>
