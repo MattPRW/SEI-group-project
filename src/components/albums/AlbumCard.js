@@ -11,8 +11,8 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
       <h5 className="title-size">{title}</h5>
       <h6>{`${artist.name}`}</h6>
     </div>
-    {addAlbum && removeAlbum && (
-      <div onClick={(inRekordBox === false) ? addAlbum : removeAlbum} className={`button ${(inRekordBox === false) ? 'button-primary' : 'button'}`} id={id}>
+    {removeAlbum && (
+      <div onClick={(inRekordBox === false) ? addAlbum : removeAlbum} className={`flex-end button ${(inRekordBox === false) ? 'button-primary' : 'button'}`} id={id}>
         {(inRekordBox === false) ? 'Add to collection' : 'Remove from collection'}</div>)}
   </div >
 )
