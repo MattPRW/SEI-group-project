@@ -7,7 +7,7 @@ function register(req, res) {
     .create(req.body)
     .then(user => res.status(201).json({ message: `Thanks for registering, ${user.username}. Now please login.` }))
     .catch(err => res.status(422).json(err))
- 
+
 }
 
 // login route -/login
@@ -32,11 +32,17 @@ function profile(req, res) { // route for a user /profile
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }
-
+function displayRekordBox(req, res) { // route for a user /profile
+  User
+    .findById(req.currentUser._id)
+    .populate('rekordBox')
+    .then(user => res.status(200).json(user.rekordBox))
+    .catch(err => res.json(err))
+}
 //route to find all users
 function index(req, res) {
   User
-    .find() 
+    .find()
     .then(users => res.status(200).json(users))
     .catch(() => res.status(404).json({ message: 'Not Found' }))
 }
@@ -60,5 +66,6 @@ module.exports = {
   profile,
   register,
   login, // exporting each 'route handling' function, taking advantage of es6 object short hand, same as saying { login: login },
-  index
+  index,
+  displayRekordBox
 }
