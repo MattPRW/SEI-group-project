@@ -219,10 +219,11 @@ h3{
   align-self: baseline;
 }
 .flex-end {
-  margin-top: auto
+  margin-top: auto;
 }
-
-
+.radius-card {
+  border-radius: 2px;
+}
 
 @media only screen and (max-width: 600px) {
   .fade {

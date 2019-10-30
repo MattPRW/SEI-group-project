@@ -11,6 +11,7 @@ class Dashboard extends React.Component {
     this.state = {
       user: null
     }
+    this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
   }
 
   componentDidMount() {
@@ -37,11 +38,36 @@ class Dashboard extends React.Component {
       })
       .catch(err => console.log(err))
   }
+  inRekordBox(value) {
+    if (this.state.user.rekordBox) return this.state.user.rekordBox.some(record => record.deezerId === value)
+  }
+
+  handleRemoveAlbum(e) {    // creates album in DB
+    const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+    console.log(albumId)
+    const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
+
+    axios.delete(`/api/albums/${albumData._id}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => this.getUser())
+      .catch(err => console.log(err))
+  }
+
+  handleRemoveAlbum(e) {    // 
+    const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+    const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
+    axios.delete(`/api/profile/albums/${albumData._id}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => this.getUser())
+      .catch(err => console.log(err))
+  }
 
   render() {
 
     if (!this.state.user) return null
-    console.log(this.state.user)
+    console.log('render state', this.state)
     return (
       <section >
         <div>
@@ -54,6 +80,9 @@ class Dashboard extends React.Component {
             {this.state.user.rekordBox.map(album => (
               < AlbumCard key={album.deezerId}
                 {...album}
+                removeAlbum={this.handleRemoveAlbum}
+                inRekordBox={this.inRekordBox(album.deezerId)}
+                id={album.deezerId}
               />
             ))}
           </div>
@@ -64,3 +93,20 @@ class Dashboard extends React.Component {
 }
 
 export default Dashboard
+
+
+
+
+// handleRemoveAlbum(e) {    // creates album in DB
+//   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+//   let albumData = this.state.user.rekordBox.filter(item => item.deezerId === albumId)
+//   albumData = albumData[0]._id
+//   axios.delete(`/api/albums/${albumData}`, {
+//     headers: { Authorization: `Bearer ${Auth.getToken()}` }
+//   })
+//     .then(() => this.getRekordBox())
+//     .catch(err => console.log(err))
+// }
+
+
+// removeAlbum={this.handleRemoveAlbum}

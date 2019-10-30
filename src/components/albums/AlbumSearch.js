@@ -3,6 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
 import { Link } from 'react-router-dom'
+// import SoundPlayer from 'react-native-sound-player'
 
 class AlbumSearch extends React.Component {
   constructor() {
@@ -10,14 +11,15 @@ class AlbumSearch extends React.Component {
     this.state = {
       albums: [],
       rekordBox: null,
-      albumData: null
-
+      albumData: null,
+      albumTracks: null
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAddAlbum = this.handleAddAlbum.bind(this)
     this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
+    this.handleDropDown = this.handleDropDown.bind(this)
 
   }
   getRekordBox() {
@@ -61,15 +63,20 @@ class AlbumSearch extends React.Component {
       .then(() => this.getRekordBox())
       .catch(err => console.log(err))
   }
-
-
   inRekordBox(value) {
     if (this.state.rekordBox) return this.state.rekordBox.some(record => record.deezerId === value)
-
+  }
+  handleDropDown(e) {
+    console.log(e.target.value)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${e.target.value}/tracks`)
+      .then(res => this.setState({ albumTracks: res.data.data }))
+      .catch(err => console.log(err))
+  }
+  playAudio(e) {
+    track.preview.play()
   }
 
   render() {
-
     if (!this.state.albums && !this.state.rekordBox) return null
     console.log(this.state)
     return (
@@ -91,10 +98,13 @@ class AlbumSearch extends React.Component {
             this.state.albums.data.map(album => (
               < AlbumCard key={album.id}
                 {...album}
+                albumTracks={this.state.albumTracks}
                 inRekordBox={this.inRekordBox(album.id)}
                 addAlbum={this.handleAddAlbum}
                 removeAlbum={this.handleRemoveAlbum}
+                dropDown={this.handleDropDown}
                 coverImage={album.cover_medium}
+              // SoundPlayer = {SoundPlayer}
               />
             ))}
         </div>
