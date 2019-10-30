@@ -1,8 +1,8 @@
 import React from 'react'
 
-const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRekordBox }) => (
+const AlbumCard = ({ title, artist, coverImage, _id, addAlbum, removeAlbum, inRekordBox, deezerId }) => (
 
-  <div className="column-is-one-third album-card" value={id} key={id} >
+  <div className="column-is-one-third album-card" value={_id} key={_id} >
     <div className="image">
       <img src={coverImage}></img>
     </div>
@@ -12,8 +12,12 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
       <h6>{`${artist.name}`}</h6>
     </div>
     {removeAlbum && (
-      <div onClick={(inRekordBox === false) ? addAlbum : removeAlbum} className={`flex-end button ${(inRekordBox === false) ? 'button-primary' : 'button'}`} id={id}>
-        {(inRekordBox === false) ? 'Add to collection' : 'Remove from collection'}</div>)}
+      <div 
+        id={id} 
+        onClick={inRekordBox ? addAlbum : removeAlbum} 
+        className={`flex-end button ${inRekordBox ? 'button-primary' : 'button'}`}
+      >
+        {inRekordBox ? 'Add to collection' : 'Remove from collection'}</div>)}
   </div >
 )
 
