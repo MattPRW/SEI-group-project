@@ -32,6 +32,7 @@ function profile(req, res) { // route for a user /profile
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }
+
 function displayRekordBox(req, res) { // route for a user /profile
   User
     .findById(req.currentUser._id)
@@ -39,6 +40,15 @@ function displayRekordBox(req, res) { // route for a user /profile
     .then(user => res.status(200).json(user.rekordBox))
     .catch(err => res.json(err))
 }
+
+function displayOtherUser(req, res) { // route for a user /profile
+  User
+    .findById(req.params.id)
+    .populate('rekordBox')
+    .then(user => res.status(200).json(user))
+    .catch(err => res.json(err))
+}
+
 //route to find all users
 function index(req, res) {
   User
@@ -67,5 +77,6 @@ module.exports = {
   register,
   login, // exporting each 'route handling' function, taking advantage of es6 object short hand, same as saying { login: login },
   index,
-  displayRekordBox
+  displayRekordBox,
+  displayOtherUser
 }

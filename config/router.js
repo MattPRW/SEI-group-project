@@ -27,6 +27,9 @@ router.route('/albums/:id')
 router.route('/users')
   .get(secureRoute, users.index)
 
+router.route('/users/:id')
+  .get(secureRoute, users.displayOtherUser)
+
 // router.route('/albums/:id')
 //   .put(secureRoute, albums.addUserToAlbum)
 

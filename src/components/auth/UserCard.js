@@ -2,21 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const UserCard = ({ image, username, rekordBox }) => (
-  <div className="user-card">
-    <div>
-      <img className="profile-pic" src={image} />
-    </div>
-    <div className="user-info">
-      <h3>
-        Hi {username}!
-      </h3>
-      <p>{`You have ${rekordBox.length} albums in your record box. Click `}<Link to="/search">here</Link> to search for more</p>
-      <button className="edit-profile">
-        <Link to="/Profile">Edit Profile Details</Link>
-      </button>
-    </div>
-  </div>
+const UserCard = ({ username, id, image }) => (
+  <Link to={`/userRecordBox/${id}`}>
+    <div className="column-is-one-third album-card" value={id} key={id} >
+      <div className="profile-pic-container">
+        <div >
+          <img className="profile-card-pic" src={image}></img>
+        </div>
+      </div>
+
+      <div>
+        <h5 className="title-size">{id}</h5>
+        <h6>{`${username}`}</h6>
+      </div>
+    </div >
+  </Link>
 )
 
 export default UserCard
