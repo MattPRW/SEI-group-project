@@ -6,7 +6,6 @@
 
 body {
   font-family: 'Raleway', sans-serif;
-  // height: 100vh;
   height: 100%;
   background-color: #dddccf;
 }
@@ -76,8 +75,6 @@ h3{
       3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .home-text {
   font-family: 'Staatliches', sans-serif;
   letter-spacing: .2em;
@@ -87,16 +84,34 @@ h3{
   2px 2px 0px #000000;
 }
 
-.navbar {
-  height: 4vh;
-  width:100%;
-  margin:0;
-  padding:0;
-  border:0;
+.Navbar {
+  display: flex;
+  padding: 16px;
+  background-color: rgb(157, 158, 141);
+  height: 5vh;
 }
 
-.navbar, .navbar-menu {
-  background-color: rgb(157, 158, 141)
+.Navbar__Items {
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  
+}
+
+.Navbar__Link {
+  padding-right: 0px;
+  justify-self: center;
+  align-self: center;
+}
+
+.Navbar__Items--right {
+  margin-left:auto;
+}
+
+.Nav-spacer {
+  border-left: solid 1px gray;
+  height: 250%;
+  margin: 0 10px;
 }
 
 .logged-in {
@@ -195,4 +210,12 @@ h3{
 .edit-profile{ 
   justify-self: flex-end;
   align-self: baseline;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .fade {
+    display: none; 
+  }
 }
