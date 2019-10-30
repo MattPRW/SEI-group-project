@@ -47,7 +47,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-native-sound-player": "^0.10.1",
+    "react-h5-audio-player": "^1.2.1",
     "react-router-dom": "^4.3.1"
   }
 }
