@@ -38,6 +38,21 @@ class Dashboard extends React.Component {
       })
       .catch(err => console.log(err))
   }
+  inRekordBox(value) {
+    if (this.state.user.rekordBox) return this.state.user.rekordBox.some(record => record.deezerId === value)
+  }
+
+  handleRemoveAlbum(e) {    // creates album in DB
+    const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
+    console.log(albumId)
+    const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
+
+    axios.delete(`/api/albums/${albumData._id}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(() => this.getUser())
+      .catch(err => console.log(err))
+  }
 
   handleRemoveAlbum(e) {    // 
     const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
@@ -62,16 +77,14 @@ class Dashboard extends React.Component {
             />
           </div>
           <div className="container flex-container">
-            {this.state.user.rekordBox.map(album => {
-              return (
-                < AlbumCard key={album.deezerId}
-                  {...album}
-                  removeAlbum={this.handleRemoveAlbum}
-                  id={album.deezerId}
-                />
-              )
-            })
-            }
+            {this.state.user.rekordBox.map(album => (
+              < AlbumCard key={album.deezerId}
+                {...album}
+                removeAlbum={this.handleRemoveAlbum}
+                inRekordBox={this.inRekordBox(album.deezerId)}
+                id={album.deezerId}
+              />
+            ))}
           </div>
         </div>
       </section>
