@@ -30,7 +30,7 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
       removeAlbum && (
         <div onClick={(!inRekordBox) ? addAlbum : removeAlbum}
           className={`flex-end button ${(!inRekordBox) ? 'button-primary' : 'button'}`} id={id}>
-          {(!inRekordBox) ? 'Add to collection' : 'Remove from collection'}</div>)
+          {(!inRekordBox) ? 'Add to rekord box' : 'Remove from rekord box'}</div>)
     }
   </div >
 )
