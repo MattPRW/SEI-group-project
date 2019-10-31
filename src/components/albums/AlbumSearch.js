@@ -95,19 +95,21 @@ class AlbumSearch extends React.Component {
     console.log(this.state)
     return (
       <section className="section">
-        <div className="container ">
-          <h3>Search for Artist or Album</h3>
-          <form onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="twelve columns">
-                <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
+        <div className={this.state.albums.length === 0 ? 'no-results' : ''}>
+          <div className="container">
+            <h3>Search for Artist or Album</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="twelve columns">
+                  <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
+                </div>
               </div>
-            </div>
-            <button className="button-primary" type="submit" value="Submit">Submit</button>
-            <Link to="/Dashboard" className="button" type="submit" value="Submit">Return to Profile</Link>
-          </form>
+              <button className="button-primary" type="submit" value="Submit">Submit</button>
+              <Link to="/Dashboard" className="button" type="submit" value="Submit">Return to Profile</Link>
+            </form>
+          </div>
         </div>
-        <div className="container flex-container">
+        <div className="container flex-container" >
           {this.state.albums.data &&
             this.state.albums.data.map(album => (
               < AlbumCard key={album.id}
