@@ -217,6 +217,11 @@ h3{
   justify-self: flex-end;
   align-self: baseline;
 }
+.toggle-player-buttons{
+  .button {
+    width: 50%;
+  }
+}
 .flex-end {
   margin-top: auto;
 }

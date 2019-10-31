@@ -8,7 +8,6 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
   <div className='column-is-one-third album-card' value={id} key={id} >
 
     <div className="album-image" id={id} style={{ backgroundImage: `url(${coverImage})`, height: '250px', width: '250px' }} >
-      {/* <img src={coverImage}></img> */}
       {(albumTracks && parseInt(albumOnPlayer) === id) &&
         <div className="player-flex">
           <Player
@@ -22,19 +21,14 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
       <h5 className="title-size">{title}</h5>
       <h6>{`${artist.name}`}</h6>
     </div>
-    <button className="button" value={id} onClick={dropDown}>
-      ▷
-    </button>
-    
-    {/* {albumTracks && (
-      <div>
-        {albumTracks.map(track => (
-          <div key={track.id}>
-            <p>{track.title}</p>
-            <Player
-              file={track.preview} />
-          </div>))}
-      </div>)} */}
+    <div className="toggle-player-buttons">
+      <button className="button" value={id} onClick={dropDown}>
+        Play ▷
+      </button>
+      <button className="button" value={id} onClick={dropDown}>
+        Stop ▽
+      </button>
+    </div>
     {
       removeAlbum && (
         <div onClick={(!inRekordBox) ? addAlbum : removeAlbum}
