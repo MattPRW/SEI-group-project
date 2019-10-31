@@ -77,7 +77,7 @@ class Navbar extends React.Component {
       //   </div>
       // </nav>
       <div>
-        <div className="Navbar">
+        <div className="Navbar fixed">
           <nav className="Navbar__Items">
             <div className="Navbar__Link Navbar__Link-brand">
               {!Auth.isAuthenticated() && <Link className="logo" to="/">rekordr</Link>}

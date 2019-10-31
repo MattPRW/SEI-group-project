@@ -1,11 +1,11 @@
 import React from 'react'
 import AudioPlayer from 'react-h5-audio-player'
 
-const Player = ({ preview }) => (
+const Player = ({ file }) => (
   <AudioPlayer
-    autoPlay={false}
-    src={preview}
-  // onPlay={play}
+    autoPlay={true}
+    src={file}
+    controls={true}
   />
 )
 export default Player
