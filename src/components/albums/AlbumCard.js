@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import SoundPlayer from 'react-native-sound-player'
+import Player from './AudioPlayer'
 
 
 const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRekordBox, dropDown, albumTracks }) => (
@@ -22,16 +22,15 @@ const AlbumCard = ({ title, artist, coverImage, id, addAlbum, removeAlbum, inRek
         {albumTracks.map(track => (
           <div key={track.id}>
             <p>{track.title}</p>
-            <button value={track.preview} onClick={() => track.preview.play()}>▷</button>
-            <p>{track.preview}</p>
-            {/* <button onClick={SoundPlayer.playUrl(track.preview)}>▷</button> */}
+            <Player 
+              preview={track.preview}/>
           </div>))}
       </div>)}
     {
       removeAlbum && (
         <div onClick={(!inRekordBox) ? addAlbum : removeAlbum}
           className={`flex-end button ${(!inRekordBox) ? 'button-primary' : 'button'}`} id={id}>
-          {(!inRekordBox) ? 'Add to collection' : 'Remove from collection'}</div>)
+          {(!inRekordBox) ? 'Add to rekord box' : 'Remove from rekord box'}</div>)
     }
   </div >
 )

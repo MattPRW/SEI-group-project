@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import AlbumCard from './AlbumCard'
 
+
 class AlbumsIndex extends React.Component {
   constructor() {
     super()
