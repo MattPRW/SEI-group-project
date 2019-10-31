@@ -21,7 +21,8 @@ class AlbumSearch extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAddAlbum = this.handleAddAlbum.bind(this)
     this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
-    this.handleDropDown = this.handleDropDown.bind(this)
+    this.handleOpenDropDown = this.handleOpenDropDown.bind(this)
+    // this.handleCloseDropDown = this.handleCloseDropDown.bind(this)
     this.handlePlay = this.handlePlay.bind(this)
 
   }
@@ -74,11 +75,15 @@ class AlbumSearch extends React.Component {
   inRekordBox(value) {
     if (this.state.rekordBox) return this.state.rekordBox.some(record => record.deezerId === value)
   }
-  handleDropDown(e) {
+  handleOpenDropDown(e) {
     console.log(e.target.value)
-    this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value))
-
+    this.state.albumOnPlayer !== e.target.value ? this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
   }
+  // handleOpenDropDown(e) {
+  //   console.log(e.target.value)
+  //   this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value))
+  // }
+
   getTracks(value) {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
       .then(res => this.setState({ albumTracks: res.data.data }))
@@ -121,7 +126,7 @@ class AlbumSearch extends React.Component {
                 inRekordBox={this.inRekordBox(album.id)}
                 addAlbum={this.handleAddAlbum}
                 removeAlbum={this.handleRemoveAlbum}
-                dropDown={this.handleDropDown}
+                openDropDown={this.handleOpenDropDown}
                 play={this.handlePlay}
                 coverImage={album.cover_medium}
                 songOnPlayer={this.state.songOnPlayer}
