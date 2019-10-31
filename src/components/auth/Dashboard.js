@@ -18,16 +18,6 @@ class Dashboard extends React.Component {
     this.getUser()
   }
 
-  // getAlbums() {
-  //   axios.get('/api/albums')
-  //     .then(res => this.setState({ albums: res.data }))
-  // }
-
-  // getAndFilterUserAlbums() {
-  //   if (!this.state.albums) return []
-  //   return this.state.albums.filter(album => album.users.filter(_id => _id === this.state.user._id))
-  // }
-
   getUser() {
     axios.get('api/profile', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
@@ -46,23 +36,12 @@ class Dashboard extends React.Component {
     const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
     console.log(albumId)
     const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
-
     axios.delete(`/api/albums/${albumData._id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(() => this.getUser())
       .catch(err => console.log(err))
   }
-
-  // handleRemoveAlbum(e) {
-  //   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
-  //   const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
-  //   axios.delete(`/api/profile/albums/${albumData._id}`, {
-  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
-  //   })
-  //     .then(() => this.getUser())
-  //     .catch(err => console.log(err))
-  // }
 
   render() {
 

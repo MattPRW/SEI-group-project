@@ -3,7 +3,8 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
 import { Link } from 'react-router-dom'
-// import SoundPlayer from 'react-native-sound-player'
+import Player from './AudioPlayer'
+
 
 class AlbumSearch extends React.Component {
   constructor() {
@@ -72,9 +73,6 @@ class AlbumSearch extends React.Component {
       .then(res => this.setState({ albumTracks: res.data.data }))
       .catch(err => console.log(err))
   }
-  playAudio(e) {
-    track.preview.play()
-  }
 
   render() {
     if (!this.state.albums && !this.state.rekordBox) return null
@@ -104,7 +102,6 @@ class AlbumSearch extends React.Component {
                 removeAlbum={this.handleRemoveAlbum}
                 dropDown={this.handleDropDown}
                 coverImage={album.cover_medium}
-              // SoundPlayer = {SoundPlayer}
               />
             ))}
         </div>
