@@ -16,6 +16,7 @@ button, submit {
 
 }
 
+
 .flex-container {
 display: flex;
 flex-wrap: wrap;
@@ -232,4 +233,10 @@ h3{
   .large-logo{
     font-size: 8rem;
   }
+}
+.no-results{
+  display: flex;
+  height: 87vh;
+  width: 100vw;
+  align-items: center;
 }
