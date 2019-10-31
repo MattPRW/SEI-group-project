@@ -3,7 +3,6 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
 import { Link } from 'react-router-dom'
-import Player from './AudioPlayer'
 
 
 class AlbumSearch extends React.Component {
@@ -13,7 +12,9 @@ class AlbumSearch extends React.Component {
       albums: [],
       rekordBox: null,
       albumData: null,
-      albumTracks: null
+      albumTracks: null,
+      songOnPlayer: null,
+      albumOnPlayer: 0
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,6 +22,7 @@ class AlbumSearch extends React.Component {
     this.handleAddAlbum = this.handleAddAlbum.bind(this)
     this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
     this.handleDropDown = this.handleDropDown.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
 
   }
   getRekordBox() {
@@ -69,9 +71,18 @@ class AlbumSearch extends React.Component {
   }
   handleDropDown(e) {
     console.log(e.target.value)
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${e.target.value}/tracks`)
+    this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value))
+
+  }
+  getTracks(value) {
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
       .then(res => this.setState({ albumTracks: res.data.data }))
       .catch(err => console.log(err))
+  }
+
+  handlePlay(e) {
+    console.log('clicked song', e.target.value)
+    this.setState({ songOnPlayer: e.target.value })
   }
 
   render() {
@@ -103,7 +114,10 @@ class AlbumSearch extends React.Component {
                 addAlbum={this.handleAddAlbum}
                 removeAlbum={this.handleRemoveAlbum}
                 dropDown={this.handleDropDown}
+                play={this.handlePlay}
                 coverImage={album.cover_medium}
+                songOnPlayer={this.state.songOnPlayer}
+                albumOnPlayer={this.state.albumOnPlayer}
               />
             ))}
         </div>

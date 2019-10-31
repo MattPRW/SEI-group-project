@@ -9,7 +9,13 @@ body {
   height: 100%;
   background-color: #dddccf;
 }
-
+.fixed {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index:1
+ 
+}
 button, submit {
   font-size: 1.2rem;
   letter-spacing: .15em;
@@ -133,12 +139,6 @@ h3{
   box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.959);
 }
 
-.profile-card-pic{
-  display: flex;
-  max-height: 30vw;
-  max-width: 30vw;
-}
-
 .container-title{
   display:flex;
   flex-direction: column;
@@ -206,7 +206,6 @@ h3{
   margin: 4%;
 }
 
-
 .user-info{
   display:flex;
   flex-direction: column;
@@ -219,20 +218,45 @@ h3{
   justify-self: flex-end;
   align-self: baseline;
 }
+.toggle-player-buttons{
+  .button {
+    width: 50%;
+  }
+}
 .flex-end {
   margin-top: auto;
 }
-.radius-card {
-  border-radius: 2px;
+.album-image {
+  height: 250px;
+  width: 250px
+}
+.player-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  background-color: #dddccf; 
+  opacity: .9;
+  height: 100%;
+  overflow: scroll;
+}
+.tracklist {
+  display: flex;
+  align-items: center;
+  border: none;
+  text-align: center;
+  height: 20px;
+  font-size: 8px;
 }
 
 @media only screen and (max-width: 600px) {
   .fade {
     display: none; 
   }
-  .large-logo{
-    font-size: 8rem;
-  }
+}
+
+.help{
+  font-size: 1rem;
 }
 .no-results{
   display: flex;

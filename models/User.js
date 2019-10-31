@@ -25,13 +25,14 @@ userSchema.virtual('rekordBox', {
 userSchema.set('toJSON', {
   virtuals: true,
   transform(doc, json) {
+    delete json.email
     delete json.password
     return json
   }
 })
 
 userSchema
-  .virtual('passwordConfirmation')
+  .virtual('passwordConfirmation',)
   .set(function setPasswordConfirmation(passwordConfirmation) {
     this._passwordConfirmation = passwordConfirmation
   })
