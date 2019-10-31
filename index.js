@@ -5,7 +5,7 @@ const { dbURI, port } = require('./config/environment')
 const bodyParser = require('body-parser')
 const logger = require('./lib/logger')
 const router = require('./config/router')
-const axios = require('axios')
+const errorHandler = require('./lib/errorHandler')
 
 
 mongoose.connect(dbURI,
@@ -13,10 +13,16 @@ mongoose.connect(dbURI,
 )
 
 app.use(bodyParser.json())
+
 app.use(logger)
 
 app.use('/api', router)
 
+app.use(errorHandler)
+
+app.use('/*', (req, res) => res.status(404).json({ message: 'Not Found' }))
+
 app.listen(port, () => console.log(`Up and running on port ${port}`))
+
 
 module.exports = app

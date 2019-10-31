@@ -8,11 +8,19 @@ class Register extends React.Component {
   constructor() {
     super()
     this.state = {
-      data: {},
+      data: {
+        username: '',
+        email: '',
+        password: '',
+        passwordconfirmation: '',
+        image: '',
+        address: ''
+      },
       loading: false,
       formData: {
         title: 'Register'
-      }
+      },
+      errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,6 +38,7 @@ class Register extends React.Component {
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
+    // console.log(errors)
     this.setState({ data })
   }
 
@@ -45,6 +54,7 @@ class Register extends React.Component {
         handleSubmit={this.handleSubmit}
         profile={this.state.data}
         formData={this.state.formData}
+        errors={this.state.errors}
       />
     )
   }

@@ -54,16 +54,6 @@ class Dashboard extends React.Component {
       .catch(err => console.log(err))
   }
 
-  // handleRemoveAlbum(e) {
-  //   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
-  //   const albumData = this.state.user.rekordBox.find(item => item.deezerId === albumId)
-  //   axios.delete(`/api/profile/albums/${albumData._id}`, {
-  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
-  //   })
-  //     .then(() => this.getUser())
-  //     .catch(err => console.log(err))
-  // }
-
   render() {
 
     if (!this.state.user) return null
@@ -96,17 +86,3 @@ export default Dashboard
 
 
 
-
-// handleRemoveAlbum(e) {    // creates album in DB
-//   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
-//   let albumData = this.state.user.rekordBox.filter(item => item.deezerId === albumId)
-//   albumData = albumData[0]._id
-//   axios.delete(`/api/albums/${albumData}`, {
-//     headers: { Authorization: `Bearer ${Auth.getToken()}` }
-//   })
-//     .then(() => this.getRekordBox())
-//     .catch(err => console.log(err))
-// }
-
-
-// removeAlbum={this.handleRemoveAlbum}
