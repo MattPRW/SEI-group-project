@@ -11,7 +11,7 @@ class Login extends React.Component {
 
     this.state = {
       data: {},
-      error: '',
+      errors: {},
       loading: false,
       formData: {
         title: 'Login',
@@ -27,7 +27,7 @@ class Login extends React.Component {
   }
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    this.setState({ data, error: '' })
+    this.setState({ data })
   }
 
   handleSubmit(e) {
@@ -38,7 +38,8 @@ class Login extends React.Component {
         this.setState({ splashMessage: res.data.message, loading: true })
         setTimeout(() => this.props.history.push('/dashboard'), 1000)
       })
-      .catch(() => this.setState({ error: 'Incorrect Credentials' }))
+      // .catch(err => console.log(err.message))
+      .catch(err => this.setState({ errors: err.message }))
   }
 
   render() {
@@ -53,6 +54,7 @@ class Login extends React.Component {
         handleSubmit={this.handleSubmit}
         profile={this.state.data}
         formData={this.state.formData}
+        errors={this.state.errors}
       />
     )
   }
