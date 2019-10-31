@@ -222,9 +222,9 @@ h3{
     width: 50%;
   }
 }
-.flex-end {
-  margin-top: auto;
-}
+// .flex-end {
+//   margin-top: auto;
+// }
 .album-image {
   height: 250px;
   width: 250px
@@ -246,6 +246,11 @@ h3{
   text-align: center;
   height: 20px;
   font-size: 8px;
+}
+.card-buttons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column
 }
 
 @media only screen and (max-width: 600px) {
