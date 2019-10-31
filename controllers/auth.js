@@ -2,11 +2,11 @@ const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
-function register(req, res) {
+function register(req, res, next) {
   User
     .create(req.body)
     .then(user => res.status(201).json({ message: `Thanks for registering, ${user.username}. Now please login.` }))
-    .catch(err => res.status(422).json(err))
+    .catch(next)
 
 }
 
@@ -57,7 +57,7 @@ function index(req, res) {
     .catch(() => res.status(404).json({ message: 'Not Found' }))
 }
 
-function update(req, res) { // route to update user profile
+function update(req, res, next) { // route to update user profile
   User
     .findById(req.currentUser._id)
     .then(user => {
@@ -68,7 +68,7 @@ function update(req, res) { // route to update user profile
     })
     .then(user => user.save())
     .then(user => res.status(202).json({ message: 'Profile updated.', user }))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 module.exports = {

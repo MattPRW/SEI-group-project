@@ -1,14 +1,5 @@
 const Album = require('../models/Album')
 
-//below function is thoughts draft of how to do deezer call from backend
-// function searchAlbums(req, res) {
-//   app.get('myproxyroute', (req, res) => {
-//     axios.get(`https://api.deezer.com/search/album/?q=${req.body}`)
-//       .then(res => res.status(200).json({ message: 'Message Sent ' }))
-//       .catch(err => res.json(err))
-//   })
-// }
-
 function create(req, res) { // grabs album from Deezer DB if only it does not exist in local DB. Once created it adds the user to users array.
   req.body.deezerId = req.body.id //rewrites deezer object data to our model format
   req.body.coverImage = req.body.cover_medium //rewrites deezer object data to our model format

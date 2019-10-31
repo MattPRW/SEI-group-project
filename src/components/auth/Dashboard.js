@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
         <div>
           <div className="container">
             < ProfileCard
-              { ...this.state.user }
+              {...this.state.user}
             />
           </div>
           <div className="container flex-container">
@@ -75,17 +75,3 @@ export default Dashboard
 
 
 
-
-// handleRemoveAlbum(e) {    // creates album in DB
-//   const albumId = parseInt(e.target.id)//need to parse button id as need to change data type from string to number for below filter to work
-//   let albumData = this.state.user.rekordBox.filter(item => item.deezerId === albumId)
-//   albumData = albumData[0]._id
-//   axios.delete(`/api/albums/${albumData}`, {
-//     headers: { Authorization: `Bearer ${Auth.getToken()}` }
-//   })
-//     .then(() => this.getRekordBox())
-//     .catch(err => console.log(err))
-// }
-
-
-// removeAlbum={this.handleRemoveAlbum}

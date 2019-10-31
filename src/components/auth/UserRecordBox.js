@@ -35,9 +35,7 @@ class Dashboard extends React.Component {
       <section >
         <div>
           <div className="container">
-            < ProfileCard
-              { ...this.state.user }
-            />
+            <h3>{`${this.state.user.username}'s record box`}</h3>
           </div>
           <div className="container flex-container">
             {this.state.user.rekordBox.map(album => (
