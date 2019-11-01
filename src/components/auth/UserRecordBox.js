@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
     if (!this.state.user) return null
     console.log(this.state.user)
     return (
-      <section >
+      <section className="padding-top center-page">
         <div>
           <div className="container">
             <h3>{`${this.state.user.username}'s record box`}</h3>
