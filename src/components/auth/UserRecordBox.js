@@ -94,7 +94,8 @@ class Dashboard extends React.Component {
       <section className="padding-top">
         <div>
           <div className="container">
-            <h3>{`${this.state.user.username}'s rekord box`}</h3>
+            <h3>{`${this.state.user.username}'s record box`}</h3>
+            <p>{`...has ${this.state.user.rekordBox.length} records in it`}</p>
           </div>
           <div className="container flex-container">
             {this.state.user.rekordBox.map(album => (

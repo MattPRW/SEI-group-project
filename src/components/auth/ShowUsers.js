@@ -35,11 +35,12 @@ class ShowUsers extends React.Component {
 
   render() {
     console.log(this.state)
+    // this.state.rekordBox && console.log('albums in common', this.state.rekordBox.filter(users => users.filter(user => user === '5db815bea3593964da47e9ea')))
     if (!this.state.users) return null
     return (
-      <section >
+      <section className="padding-top ">
         <div>
-          <h3>Other members</h3>
+          <h3>Check out other members Rekord Boxes</h3>
         </div>
         <div className="container flex-container">
           {this.state.users.map(user => (

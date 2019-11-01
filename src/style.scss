@@ -221,7 +221,19 @@ h3{
 
 .album-image {
   height: 250px;
-  width: 250px
+  width: 250px;
+}
+
+.profile-image {
+  height: 250px;
+  width: 350px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.959);
+}
+.user-img {
+  width: 100%;
+  height:100%
 }
 .player-flex {
   display: flex;
