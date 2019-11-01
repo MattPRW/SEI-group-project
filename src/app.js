@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import ReactAudioPlayer from 'react-audio-player'
 import 'bulma'
 import './normalize.css'
 import './skeleton.css'

@@ -33,7 +33,5 @@ router.route('/users')
 router.route('/users/:id')
   .get(secureRoute, users.displayOtherUser)
 
-// router.route('/albums/:id')
-//   .put(secureRoute, albums.addUserToAlbum)
 
 module.exports = router 
