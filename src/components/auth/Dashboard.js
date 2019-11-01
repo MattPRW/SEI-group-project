@@ -71,9 +71,9 @@ class Dashboard extends React.Component {
     console.log('render state', this.state)
     return (
       <section >
-        <div>
-          <div className="container">
-            < ProfileCard
+        <div >
+          <div className={this.state.user.rekordBox.length === 0 ? 'center-page container profile-card' : 'padding-top container profile-card'}>
+            < ProfileCard 
               {...this.state.user}
             />
           </div>

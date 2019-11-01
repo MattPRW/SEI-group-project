@@ -2,9 +2,9 @@ import React from 'react'
 const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) => (
   
   <section className="section">
-    <div className="container ">
+    <div className="container center-page">
       <form className="u-full-width" onSubmit={handleSubmit}>
-        <h2>{formData.title}</h2>
+        <h3>{formData.title}</h3>
         {!formData.noUserNameField &&
           <div className="field">
             <label className="label">Username*</label>
