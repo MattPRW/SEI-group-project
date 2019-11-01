@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const users = require('../controllers/auth') // getting my auth controller
 const albums = require('../controllers/albums') // getting albums controller
+// const proxyRequests = require('../controllers/proxyRequests')
 const secureRoute = require('../lib/secureRoute')
 
 router.route('/register') // just handling the register controller
@@ -33,5 +34,7 @@ router.route('/users')
 router.route('/users/:id')
   .get(secureRoute, users.displayOtherUser)
 
+// router.route('/proxyrequest/album_search/:id')
+//   .post(proxyRequests.proxySearch)
 
 module.exports = router 
