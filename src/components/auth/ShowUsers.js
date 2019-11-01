@@ -16,17 +16,25 @@ class ShowUsers extends React.Component {
   }
 
   getUsers() {
-    axios.get('api/users', {
+    axios.get('/api/users', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
       .then(res => {
-        this.setState({ users: res.data })
+        this.setState({ users: res.data }, this.getRekordBox())
       })
       .catch(err => console.log(err))
   }
 
+  getRekordBox() { // getting the rekordBox of visitor
+    axios.get('/api/profile', {
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => this.setState({ rekordBox: res.data.rekordBox }))
+      .catch(err => console.log('errors', err))
+  }
+
   render() {
-    console.log(this.state.users)
+    console.log(this.state)
     if (!this.state.users) return null
     return (
       <section >
@@ -37,6 +45,7 @@ class ShowUsers extends React.Component {
           {this.state.users.map(user => (
             < UserCard key={user.id}
               {...user}
+              rekordBox1={this.state.rekordBox}
             />
           ))}
         </div>

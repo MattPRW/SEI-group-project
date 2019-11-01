@@ -21,8 +21,7 @@ class AlbumSearch extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAddAlbum = this.handleAddAlbum.bind(this)
     this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
-    this.handleOpenDropDown = this.handleOpenDropDown.bind(this)
-    // this.handleCloseDropDown = this.handleCloseDropDown.bind(this)
+    this.handleToggleDropDown = this.handleToggleDropDown.bind(this)
     this.handlePlay = this.handlePlay.bind(this)
 
   }
@@ -75,14 +74,10 @@ class AlbumSearch extends React.Component {
   inRekordBox(value) {
     if (this.state.rekordBox) return this.state.rekordBox.some(record => record.deezerId === value)
   }
-  handleOpenDropDown(e) {
+  handleToggleDropDown(e) {
     console.log(e.target.value)
-    this.state.albumOnPlayer !== e.target.value ? this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
+    this.state.albumOnPlayer !== parseInt(e.target.value) ? this.setState({ albumOnPlayer: parseInt(e.target.value) }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
   }
-  // handleOpenDropDown(e) {
-  //   console.log(e.target.value)
-  //   this.setState({ albumOnPlayer: e.target.value }, this.getTracks(e.target.value))
-  // }
 
   getTracks(value) {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
@@ -91,8 +86,8 @@ class AlbumSearch extends React.Component {
   }
 
   handlePlay(e) {
-    console.log('clicked song', e.target.value)
-    this.setState({ songOnPlayer: e.target.value })
+    console.log('clicked song', e.target.id)
+    this.setState({ songOnPlayer: e.target.id })
   }
 
   render() {
@@ -122,15 +117,15 @@ class AlbumSearch extends React.Component {
             this.state.albums.data.map(album => (
               < AlbumCard key={album.id}
                 {...album}
-                albumTracks={this.state.albumTracks}
-                inRekordBox={this.inRekordBox(album.id)}
-                addAlbum={this.handleAddAlbum}
-                removeAlbum={this.handleRemoveAlbum}
-                openDropDown={this.handleOpenDropDown}
-                play={this.handlePlay}
                 coverImage={album.cover_medium}
+                inRekordBox={this.inRekordBox(album.id)}
                 songOnPlayer={this.state.songOnPlayer}
                 albumOnPlayer={this.state.albumOnPlayer}
+                addAlbum={this.handleAddAlbum}
+                removeAlbum={this.handleRemoveAlbum}
+                albumTracks={this.state.albumTracks}
+                toggleDropDown={this.handleToggleDropDown}
+                play={this.handlePlay}
               />
             ))}
         </div>
