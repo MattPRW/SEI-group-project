@@ -42,7 +42,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) 
             <div className="control">
               <input
                 className={`input ${errors && errors.password ? 'is-danger' : ''}`}
-                
+                type="password"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
@@ -57,6 +57,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) 
             <div className="control">
               <input
                 className={`input ${errors && errors.password ? 'is-danger' : ''}`}
+                type="password"
                 name="passwordConfirmation"
                 placeholder="Password Confirmation"
                 onChange={handleChange}

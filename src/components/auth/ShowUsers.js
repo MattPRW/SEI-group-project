@@ -37,9 +37,9 @@ class ShowUsers extends React.Component {
     console.log(this.state)
     if (!this.state.users) return null
     return (
-      <section >
+      <section className="padding-top ">
         <div>
-          <h3>Other members</h3>
+          <h3>Check out other members Rekord Boxes</h3>
         </div>
         <div className="container flex-container">
           {this.state.users.map(user => (

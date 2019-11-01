@@ -40,10 +40,10 @@ class AlbumSearch extends React.Component {
 
   handleSubmit(e) {  // submitting deezer search
     e.preventDefault()
-    if (this.state.search){
+    if (this.state.search) {
       axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
       )
-        .then(res => this.setState({ albums: res.data }, this.getRekordBox()))
+        .then(res => this.setState({ albums: res.data.data }, this.getRekordBox()))
         .catch(err => console.log(err))
     } else {
       this.setState({ errors: 'You haven\'t entered anything into the search box you dickhead' })
@@ -104,6 +104,7 @@ class AlbumSearch extends React.Component {
                   <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
                 </div>
                 <div>
+                  {console.log(this.state.albums.length)}
                   {(!this.state.search || this.state.search.searchString.length === 0) && <p className="help is-danger">{this.state.errors}</p>}
                 </div>
               </div>
@@ -113,8 +114,8 @@ class AlbumSearch extends React.Component {
           </div>
         </div>
         <div className="container flex-container" >
-          {this.state.albums.data &&
-            this.state.albums.data.map(album => (
+          {this.state.albums &&
+            this.state.albums.map(album => (
               < AlbumCard key={album.id}
                 {...album}
                 coverImage={album.cover_medium}
