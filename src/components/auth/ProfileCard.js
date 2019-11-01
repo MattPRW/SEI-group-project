@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom'
 
 const ProfileCard = ({ image, username, rekordBox }) => (
   <div className="user-card">
-    <div>
-      <img className="profile-pic" src={image} />
+    
+    <div className="profile-image" style={{ backgroundImage: 'url("https://i.pinimg.com/originals/d6/88/10/d688106b46b6b0454046981212f993dd.jpg")', height: '210px', width: '176px' }} >
+      <img className="user-img" src={image}></img>
     </div>
+    {/* <div>
+      <img className="profile-pic" src={image} />
+    </div> */}
     <div className="user-info">
       <h3>
         Hi {username}!

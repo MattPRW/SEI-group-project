@@ -95,6 +95,7 @@ class Dashboard extends React.Component {
         <div>
           <div className="container">
             <h3>{`${this.state.user.username}'s record box`}</h3>
+            <p>{`...has ${this.state.user.rekordBox.length} records in it`}</p>
           </div>
           <div className="container flex-container">
             {this.state.user.rekordBox.map(album => (

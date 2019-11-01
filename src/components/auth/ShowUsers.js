@@ -35,6 +35,7 @@ class ShowUsers extends React.Component {
 
   render() {
     console.log(this.state)
+    // this.state.rekordBox && console.log('albums in common', this.state.rekordBox.filter(users => users.filter(user => user === '5db815bea3593964da47e9ea')))
     if (!this.state.users) return null
     return (
       <section >
