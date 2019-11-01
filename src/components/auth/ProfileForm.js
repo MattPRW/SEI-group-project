@@ -1,5 +1,6 @@
 import React from 'react'
 const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) => (
+  
   <section className="section">
     <div className="container ">
       <form className="u-full-width" onSubmit={handleSubmit}>
@@ -31,6 +32,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) 
                 onChange={handleChange}
               />
             </div>
+            {errors === 'Request failed with status code 401' && <p className="help is-danger">Invalid Email or Password </p>}
             {errors && errors.email === `Error, expected \`email\` to be unique. Value: \`${profile.email}\`` && <p className="help is-danger">Email taken</p>}
             {errors && errors.email === 'Path `email` is required.' && <p className="help is-danger">Email is required</p>}
           </div>}
@@ -46,6 +48,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) 
                 onChange={handleChange}
               />
             </div>
+            {errors === 'Request failed with status code 401' && <p className="help is-danger">Invalid Email or Password </p>}
             {errors && errors.password && <p className="help is-danger">Password is required</p>}
           </div>}
         {!formData.noPasswordConfirmationField &&
@@ -58,6 +61,7 @@ const ProfileForm = ({ profile, errors, handleChange, handleSubmit, formData }) 
                 placeholder="Password Confirmation"
                 onChange={handleChange}
               />
+              
               {errors && errors.passwordConfirmation && <small className="help is-danger">{errors.passwordConfirmation}</small>}
               {errors && errors.password && <p className="help is-danger">Provide Confirmation</p>}
             </div>

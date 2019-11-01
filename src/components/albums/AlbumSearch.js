@@ -4,7 +4,6 @@ import Auth from '../../lib/auth'
 import AlbumCard from './AlbumCard'
 import { Link } from 'react-router-dom'
 
-
 class AlbumSearch extends React.Component {
   constructor() {
     super()
@@ -14,7 +13,8 @@ class AlbumSearch extends React.Component {
       albumData: null,
       albumTracks: null,
       songOnPlayer: null,
-      albumOnPlayer: 0
+      albumOnPlayer: 0,
+      errors: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -40,10 +40,15 @@ class AlbumSearch extends React.Component {
 
   handleSubmit(e) {  // submitting deezer search
     e.preventDefault()
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
-    )
-      .then(res => this.setState({ albums: res.data }, this.getRekordBox()))
-      .catch(err => this.setState({ errors: err }))
+    if (this.state.search){
+      axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
+      )
+        .then(res => this.setState({ albums: res.data }, this.getRekordBox()))
+        .catch(err => console.log(err))
+    } else {
+      this.setState({ errors: 'You haven\'t entered anything into the search box you dickhead' })
+      // .catch(err => this.setState({ errors: err }))
+    }
   }
 
   handleAddAlbum(e) {    // creates album in DB
@@ -98,9 +103,12 @@ class AlbumSearch extends React.Component {
                 <div className="twelve columns">
                   <input onChange={this.handleChange} className="u-full-width" type="text" placeholder="Search for Albums..." name="searchString" />
                 </div>
+                <div>
+                  {(!this.state.search || this.state.search.searchString.length === 0) && <p className="help is-danger">{this.state.errors}</p>}
+                </div>
               </div>
               <button className="button-primary" type="submit" value="Submit">Submit</button>
-              <Link to="/Dashboard" className="button" type="submit" value="Submit">Return to Profile</Link>
+              <Link to="/Dashboard" className="button">Return to Profile</Link>
             </form>
           </div>
         </div>
