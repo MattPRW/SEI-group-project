@@ -7,12 +7,12 @@ const { secret } = require('../../config/environment')
 
 describe('DELETE profile/albums/:id', () => {
   let token = null
-  const album = null
+  let album = null
 
   beforeEach(done => {
     User.create({
-      username: 'Matt',
-      email: 'matt@email',
+      username: 'Tom',
+      email: 'tom@email',
       password: 'pass',
       passwordConfirmation: 'pass'
     })
@@ -36,26 +36,26 @@ describe('DELETE profile/albums/:id', () => {
       .then(() => done())
   })
   it('should return a 401 response without a token', done => {
-    api.delete(`/api/albums/${album._id}`)
+    api.delete(`/api/profile/albums/${album._id}`)
       .end((err, res) => {
         expect(res.status).to.eq(401)
         done()
       })
   })
-  it('should return a 204 response with a token', done => {
-    api.delete(`/api/albums/${album._id}`)
+  it('should return a 202 response with a token', done => {
+    api.delete(`/api/profile/albums/${album._id}`)
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
-        expect(res.status).to.eq(204)
+        expect(res.status).to.eq(202)
         done()
       })
   })
 
   it('should return no data', done => {
-    api.delete(`/api/albums/${album._id}`)
+    api.delete(`/api/profile/albums/${album._id}`)
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
-        expect(res.body).to.deep.eq({})
+        expect(res.body.users).to.be.an('array').that.is.empty
         done()
       })
   })
