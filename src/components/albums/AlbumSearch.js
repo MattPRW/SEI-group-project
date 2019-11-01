@@ -53,7 +53,7 @@ class AlbumSearch extends React.Component {
 
   handleAddAlbum(e) {    // creates album in DB
     const albumId = parseInt(e.target.id) //need to parse button id as need to change data type from string to number for below filter to work
-    let albumData = this.state.albums.data.filter(item => item.id === albumId)
+    let albumData = this.state.albums.filter(item => item.id === albumId)
     albumData = albumData[0]
     axios.post('/api/albums', albumData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }

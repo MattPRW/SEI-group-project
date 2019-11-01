@@ -81,7 +81,7 @@
 //         done()
 //       })
 //   })
-  
+
 //   it('should return an object with a message key if request is correct', done =>{
 //     api.post('/api/register')
 //       .send(testDataCorrect)
