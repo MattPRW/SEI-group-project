@@ -86,7 +86,7 @@ class AlbumSearch extends React.Component {
   }
 
   handlePlay(e) {
-    console.log('clicked song', e.target.id)
+    // console.log('clicked song', e.target.id)
     this.setState({ songOnPlayer: e.target.id })
   }
 
