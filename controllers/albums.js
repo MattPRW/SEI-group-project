@@ -1,10 +1,10 @@
 const Album = require('../models/Album')
 
 function create(req, res) { // grabs album from Deezer DB if only it does not exist in local DB. Once created it adds the user to users array.
-  req.body.deezerId = req.body.id //rewrites deezer object data to our model format
-  req.body.coverImage = req.body.cover_medium //rewrites deezer object data to our model format
+  !req.body.deezerId && (req.body.deezerId = req.body.id) //rewrites deezer object data to our model format
+  !req.body.coverImage && (req.body.coverImage = req.body.cover_medium)//rewrites deezer object data to our model format
   Album
-    .findOne({ deezerId: req.body.id })
+    .findOne( { deezerId: req.body.deezerId })
     .then(album => {
       if (!album) return Album.create(req.body)
       return album
@@ -12,7 +12,6 @@ function create(req, res) { // grabs album from Deezer DB if only it does not ex
     .then(album => {
       if (album.users.includes(req.currentUser._id)) return album.save()
       album.users.push(req.currentUser)
-      // console.log('!includes', album.users)
       return album.save()
     }
     )

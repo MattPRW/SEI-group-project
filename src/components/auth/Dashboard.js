@@ -9,9 +9,14 @@ class Dashboard extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: null
+      user: null,
+      albumTracks: null,
+      albumOnPlayer: null,
+      songOnPlayer: ''
     }
     this.handleRemoveAlbum = this.handleRemoveAlbum.bind(this)
+    this.handleToggleDropDown = this.handleToggleDropDown.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
   }
 
   componentDidMount() {
@@ -42,6 +47,23 @@ class Dashboard extends React.Component {
       .then(() => this.getUser())
       .catch(err => console.log(err))
   }
+  // music player functions
+
+  handleToggleDropDown(e) {
+    console.log(e.target.value)
+    this.state.albumOnPlayer !== parseInt(e.target.value) ? this.setState({ albumOnPlayer: parseInt(e.target.value) }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
+  }
+
+  getTracks(value) {
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
+      .then(res => this.setState({ albumTracks: res.data.data }))
+      .catch(err => console.log(err))
+  }
+
+  handlePlay(e) {
+    console.log('clicked song', e.target.id)
+    this.setState({ songOnPlayer: e.target.id })
+  }
 
   render() {
 
@@ -62,6 +84,11 @@ class Dashboard extends React.Component {
                 removeAlbum={this.handleRemoveAlbum}
                 inRekordBox={this.inRekordBox(album.deezerId)}
                 id={album.deezerId}
+                albumTracks={this.state.albumTracks}
+                albumOnPlayer={this.state.albumOnPlayer}
+                songOnPlayer={this.state.songOnPlayer}
+                play={this.handlePlay}
+                toggleDropDown={this.handleToggleDropDown}
               />
             ))}
           </div>
@@ -70,7 +97,6 @@ class Dashboard extends React.Component {
     )
   }
 }
-
 export default Dashboard
 
 
