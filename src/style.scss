@@ -5,6 +5,7 @@
   }
 
 body {
+  // margin-top: 33px;
   font-family: 'Raleway', sans-serif;
   height: 100%;
   background-color: #dddccf;
@@ -21,7 +22,6 @@ button, submit {
   letter-spacing: .15em;
 
 }
-
 
 .flex-container {
 display: flex;
@@ -218,14 +218,7 @@ h3{
   justify-self: flex-end;
   align-self: baseline;
 }
-.toggle-player-buttons{
-  .button {
-    width: 50%;
-  }
-}
-// .flex-end {
-//   margin-top: auto;
-// }
+
 .album-image {
   height: 250px;
   width: 250px
@@ -246,7 +239,7 @@ h3{
   border: none;
   text-align: center;
   height: 20px;
-  font-size: 8px;
+  font-size: 10px;
 }
 .card-buttons {
   margin-top: auto;
