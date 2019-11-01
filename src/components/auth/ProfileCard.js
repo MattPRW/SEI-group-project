@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom'
 
 
 const ProfileCard = ({ image, username, rekordBox }) => (
-<<<<<<< HEAD
   <div className="user-card">
     
     <div className="profile-image" style={{ backgroundImage: 'url("https://i.pinimg.com/originals/d6/88/10/d688106b46b6b0454046981212f993dd.jpg")', height: '210px', width: '176px' }} >
       <img className="user-img" src={image}></img>
-=======
-  <div className="user-card ">
-    <div>
-      <img className="profile-pic" src={image} />
->>>>>>> development
     </div>
     {/* <div>
       <img className="profile-pic" src={image} />

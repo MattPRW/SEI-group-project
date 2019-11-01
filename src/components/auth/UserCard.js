@@ -11,8 +11,8 @@ const UserCard = ({ username, id, image, rekordBox, rekordBox1 }) => (
         </div>
       </div>
       <div>
-        <h5 className="title-size">{id}</h5>
-        <h6>{`${username}`}</h6>
+        {/* <h5 className="title-size">{id}</h5> */}
+        <h5 className="title-size">{`${username}`}</h5>
         {/* <h6>{rekordBox.length}</h6> */}
         {/* <h6>{rekordBox1 && (rekordBox1.filter(users => users.filter(user => user.id === id).length))}</h6> */}
       </div>
