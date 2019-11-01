@@ -49,8 +49,8 @@ class Dashboard extends React.Component {
     console.log('render state', this.state)
     return (
       <section >
-        <div>
-          <div className="container">
+        <div >
+          <div className="container profile-card padding-top">
             < ProfileCard
               {...this.state.user}
             />

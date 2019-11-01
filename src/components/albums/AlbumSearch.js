@@ -100,7 +100,7 @@ class AlbumSearch extends React.Component {
     console.log(this.state)
     return (
       <section className="section">
-        <div className={this.state.albums.length === 0 ? 'no-results' : ''}>
+        <div className={this.state.albums.length === 0 ? 'center-page' : 'padding-top'}>
           <div className="container">
             <h3>Search for Artist or Album</h3>
             <form onSubmit={this.handleSubmit}>

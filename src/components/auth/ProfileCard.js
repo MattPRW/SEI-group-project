@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 const ProfileCard = ({ image, username, rekordBox }) => (
-  <div className="user-card">
+  <div className="user-card ">
     <div>
       <img className="profile-pic" src={image} />
     </div>
@@ -11,7 +11,11 @@ const ProfileCard = ({ image, username, rekordBox }) => (
       <h3>
         Hi {username}!
       </h3>
-      <p>{`You have ${rekordBox.length} albums in your record box. Click `}<Link to="/search">here</Link> to search for more</p>
+      <div>
+        {rekordBox.length > 1 && <p>{`You have ${rekordBox.length} albums in your record box. Click `}<Link to="/search">here</Link> to search for more</p>}
+        {rekordBox.length === 1 && <p>{`You only have ${rekordBox.length} album in your record box. Click `}<Link to="/search">here</Link> to search for more</p>}
+        {rekordBox.length < 1 && <p>{'You don\'t have anything in your rekord box yet. Click '}<Link to="/search">here</Link> to get started</p>}
+      </div>
       <button className="edit-profile">
         <Link to="/Profile">Edit Profile Details</Link>
       </button>
