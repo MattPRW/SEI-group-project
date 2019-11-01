@@ -14,7 +14,7 @@ const ProfileCard = ({ image, username, rekordBox }) => (
       <div>
         {rekordBox.length > 1 && <p>{`You have ${rekordBox.length} albums in your record box. Click `}<Link to="/search">here</Link> to search for more</p>}
         {rekordBox.length === 1 && <p>{`You only have ${rekordBox.length} album in your record box. Click `}<Link to="/search">here</Link> to search for more</p>}
-        {rekordBox.length < 1 && <p>{'You don\'t have anything in your rekord box yet. Click '}<Link to="/search">here</Link> to get started</p>}
+        {rekordBox.length < 1 && <p>{'You don\'t have anything in your record box yet. Click '}<Link to="/search">here</Link> to get started</p>}
       </div>
       <button className="edit-profile">
         <Link to="/Profile">Edit Profile Details</Link>
