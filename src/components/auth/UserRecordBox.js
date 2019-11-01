@@ -93,8 +93,8 @@ class Dashboard extends React.Component {
     return (
       <section className="padding-top">
         <div>
-          <div className="container">
-            <h3>{`${this.state.user.username}'s record box`}</h3>
+          <div className={this.state.user.rekordBox.length === 0 ? 'center-page container' : 'pcontainer'}>
+            < h3 > {`${this.state.user.username}'s record box`}</h3>
             <p>{`...has ${this.state.user.rekordBox.length} records in it`}</p>
           </div>
           <div className="container flex-container">
@@ -113,8 +113,8 @@ class Dashboard extends React.Component {
               />
             ))}
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
     )
   }
 }
