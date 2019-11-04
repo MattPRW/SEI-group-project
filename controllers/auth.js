@@ -53,6 +53,7 @@ function displayOtherUser(req, res) { // route for a user /profile
 function index(req, res) {
   User
     .find()
+    .populate('rekordBox')
     .then(users => res.status(200).json(users))
     .catch(() => res.status(404).json({ message: 'Not Found' }))
 }

@@ -209,9 +209,11 @@ h3{
 .user-info{
   display:flex;
   flex-direction: column;
-  // justify-items: center;
   margin-left: 50px;
   width: 80%;
+}
+.no-link {
+  color: black
 }
 
 .edit-profile{ 

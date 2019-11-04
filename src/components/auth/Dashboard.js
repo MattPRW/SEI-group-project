@@ -54,8 +54,8 @@ class Dashboard extends React.Component {
     this.state.albumOnPlayer !== parseInt(e.target.value) ? this.setState({ albumOnPlayer: parseInt(e.target.value) }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
   }
 
-  getTracks(value) {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
+  getTracks(arg) {
+    axios.get(`/api/proxyrequest/albumtracks/${arg}`)
       .then(res => this.setState({ albumTracks: res.data.data }))
       .catch(err => console.log(err))
   }

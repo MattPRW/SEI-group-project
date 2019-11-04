@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import AlbumCard from '../albums/AlbumCard'
-import ProfileCard from '../auth/ProfileCard'
 
 class Dashboard extends React.Component {
   constructor() {
@@ -75,8 +74,8 @@ class Dashboard extends React.Component {
     this.state.albumOnPlayer !== parseInt(e.target.value) ? this.setState({ albumOnPlayer: parseInt(e.target.value) }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
   }
 
-  getTracks(value) {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
+  getTracks(arg) {
+    axios.get(`/api/proxyrequest/albumtracks/${arg}`)
       .then(res => this.setState({ albumTracks: res.data.data }))
       .catch(err => console.log(err))
   }
@@ -93,9 +92,9 @@ class Dashboard extends React.Component {
     return (
       <section className="padding-top">
         <div>
-          <div className={this.state.user.rekordBox.length === 0 ? 'center-page container' : 'pcontainer'}>
+          <div className={this.state.user.rekordBox.length === 0 ? 'center-page container' : 'container'}>
             < h3 > {`${this.state.user.username}'s record box`}</h3>
-            <p>{`...has ${this.state.user.rekordBox.length} records in it`}</p>
+            <p className="title-size">{`...has ${this.state.user.rekordBox.length} records in it`}</p>
           </div>
           <div className="container flex-container">
             {this.state.user.rekordBox.map(album => (

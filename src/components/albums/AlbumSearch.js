@@ -41,20 +41,19 @@ class AlbumSearch extends React.Component {
   handleSubmit(e) {  // submitting deezer search
     e.preventDefault()
     if (this.state.search) {
-      axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${this.state.search.searchString}`
+      axios.get(`/api/proxyrequest/albumSearch/${this.state.search.searchString}`
       )
         .then(res => this.setState({ albums: res.data.data }, this.getRekordBox()))
         .catch(err => console.log(err))
     } else {
-      this.setState({ errors: 'You haven\'t entered anything into the search box you dickhead' })
+      this.setState({ errors: 'You haven\'t entered anything into the search box' })
       // .catch(err => this.setState({ errors: err }))
     }
   }
 
   handleAddAlbum(e) {    // creates album in DB
     const albumId = parseInt(e.target.id) //need to parse button id as need to change data type from string to number for below filter to work
-    let albumData = this.state.albums.filter(item => item.id === albumId)
-    albumData = albumData[0]
+    const albumData = this.state.albums.find(item => item.id === albumId)
     axios.post('/api/albums', albumData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -79,8 +78,9 @@ class AlbumSearch extends React.Component {
     this.state.albumOnPlayer !== parseInt(e.target.value) ? this.setState({ albumOnPlayer: parseInt(e.target.value) }, this.getTracks(e.target.value)) : this.setState({ albumOnPlayer: 0 })
   }
 
-  getTracks(value) {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/${value}/tracks`)
+ 
+  getTracks(arg) {
+    axios.get(`/api/proxyrequest/albumtracks/${arg}`)
       .then(res => this.setState({ albumTracks: res.data.data }))
       .catch(err => console.log(err))
   }

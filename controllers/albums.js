@@ -4,7 +4,7 @@ function create(req, res) { // grabs album from Deezer DB if only it does not ex
   !req.body.deezerId && (req.body.deezerId = req.body.id) //rewrites deezer object data to our model format
   !req.body.coverImage && (req.body.coverImage = req.body.cover_medium)//rewrites deezer object data to our model format
   Album
-    .findOne( { deezerId: req.body.deezerId })
+    .findOne({ deezerId: req.body.deezerId })
     .then(album => {
       if (!album) return Album.create(req.body)
       return album

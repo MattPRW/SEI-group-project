@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const UserCard = ({ username, id, image, rekordBox, rekordBox1 }) => (
+const UserCard = ({ username, id, image, rekordBox, rekordBox1, calculateCommonAlbums }) => (
   <Link to={`/userRecordBox/${id}`}>
     <div className="column-is-one-third album-card" value={id} key={id} >
       <div className="profile-pic-container">
@@ -11,10 +11,10 @@ const UserCard = ({ username, id, image, rekordBox, rekordBox1 }) => (
         </div>
       </div>
       <div>
-        {/* <h5 className="title-size">{id}</h5> */}
-        <h5 className="title-size">{`${username}`}</h5>
-        {/* <h6>{rekordBox.length}</h6> */}
-        {/* <h6>{rekordBox1 && (rekordBox1.filter(users => users.filter(user => user.id === id).length))}</h6> */}
+        {rekordBox1 && console.log('common', calculateCommonAlbums(rekordBox1, rekordBox))}
+        <h5 className="title no-link">{`${username}`}</h5>
+        <h6 className="title-size no-link">{`Albums in Rekord Box: ${rekordBox.length}`}</h6>
+        <h6 className="title-size no-link">{`Albums in Common: ${rekordBox1 && calculateCommonAlbums(rekordBox1, rekordBox)}`}</h6>
       </div>
     </div >
   </Link>
