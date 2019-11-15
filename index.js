@@ -12,6 +12,8 @@ mongoose.connect(dbURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, () => console.log('Mongo is connected')
 )
 
+app.use(express.static(`${__dirname}/dist`))
+
 app.use(bodyParser.json())
 
 app.use(logger)
@@ -22,7 +24,8 @@ app.use(errorHandler)
 
 app.use('/*', (req, res) => res.status(404).json({ message: 'Not Found' }))
 
-app.listen(port, () => console.log(`Up and running on port ${port}`))
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 
+app.listen(port, () => console.log(`Up and running on port ${port}`))
 
 module.exports = app
