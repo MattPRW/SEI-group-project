@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 
 import ProfileForm from './ProfileForm'
-import SplashScreen from '../common/SplashScreen'
+import SplashScreen from '../common/Splashscreen'
 
 class Profile extends React.Component {
   constructor() {

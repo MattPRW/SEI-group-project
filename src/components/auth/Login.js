@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 
-import SplashScreen from '../common/SplashScreen'
+import SplashScreen from '../common/Splashscreen'
 import ProfileForm from './ProfileForm'
 
 class Login extends React.Component {
