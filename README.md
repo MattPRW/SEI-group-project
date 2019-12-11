@@ -35,17 +35,19 @@ Use the clone button to download the website source code. From the root director
 
 The site will always open on a the home page which will only allow access to either the login or register pages. Until the user has logged in or registered the rest of the site is locked down.
 
-![home-page-screenshot](https://imgur.com/pNXBEfq)
+![home-page-screenshot](https://i.imgur.com/pNXBEfq.jpg)
 
 Once logged in the user will be taken to their dashboard or 'Rekordbox' page. If there are no records in the collection already the option will be given to move to the search page to start populating the collection. Otherwise, the collection will be displayed, with the option to play samples from each album, or to remove from the collection. The dashboard page also contains a link to the edit user details page.
 
-![dash-screenshot](https://imgur.com/FTeoqle)
+![dash-screenshot](https://i.imgur.com/FTeoqle.png)
 
 From the search page the app communicates with the Deezer library and the user can preview tracks and populate their collection. If the search returns a result that is already included in the users collection the option to add will be switched with the option to remove.
 
-![search-screenshot](https://imgur.com/ZF1zzjL)
+![search-screenshot](https://i.imgur.com/ZF1zzjL.png)
 
 The final page is the 'View Users' page. From here the user can view a list of all other registered users. Along with the other user's name and profile picture the count of records in their collection is shown, along with the count of records in common with the logged in user. Following the link through allows the any other users profile to be viewed.
+
+![search-screenshot](https://i.imgur.com/JsajppO.png)
 
 ## Error Handling
 
@@ -61,15 +63,25 @@ One aspect of the development I managed was the error handling for the forms. I 
 
 I was also tasked with making a responsive Nav Bar that would be displayed throughout the app. This was made with pure CSS and has 3 different modes. The first being displayed before the user is logged in which contains only the logo and links to login or signup
 
-![Nav-Loggedout-screenshot](https://imgur.com/agnQbRT)
+![Nav-Loggedout-screenshot](https://i.imgur.com/agnQbRT.png)
 
 The next is the logged in full size nav bar which contains more links to the search and view users page, along with the option to log out of the site. On the other side the logged in users name and image is displayed.
 
-![Nav-Loggedout-screenshot](https://imgur.com/agnQbRT)
+![Nav-Loggedout-screenshot](https://i.imgur.com/sguKHgS.png)
 
 The third is controlled with a CSS media query and removes the username from the bar allowing the bar to shrink down to work on mobile devices
 
-![Nav-Loggedout-screenshot](https://imgur.com/Sfn2iaw)
+```css
+@media only screen and (max-width: 600px) {
+  .fade {
+    display: none; 
+  }
+}
+```
+
+
+
+![Nav-Loggedout-screenshot](https://i.imgur.com/Sfn2iaw.png)
 
 ## Challenges and future improvements
 
